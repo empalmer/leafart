@@ -1,13 +1,15 @@
-grow_sapling_initial <- function() {
+
+stalk <- function() {
   sapling <- tibble::tibble(
     #x_0 = 0, y_0 = 0,  # first shoot starts at origin
     # Need to edit this so i can place a tree anywhere
-    # Test by placing on unit interval might need to change bounds
-    x_0 = runif(1),
-    y_0 = runif(1),
+    # Choose a random first location
+    x_0 = sample(1:100,1),
+    y_0 = sample(1:100,1),
 
-    x_1 = 0, y_1 = .5, # first shoot guide is its midpoint
-    x_2 = 0, y_2 = 1,  # first shoot grow to y = 1
+    x_1 = x_0, y_1 = y_0 + .5, # first shoot guide is its midpoint
+    #x_2 = 0, y_2 = 1,  # first shoot grow to y = 1
+    x_2 = x_0, y_2 = y_0 + 1,
     seg_deg = 90,      # segment orientation is vertical
     seg_len = 1,       # segment length is 1
     id_time = 1L       # the acorn grows at "time 1"
@@ -15,7 +17,7 @@ grow_sapling_initial <- function() {
   return(sapling)
 }
 
-shape_tree_initial <- function(tree) {
+arborist_call <- function(tree) {
   tree <- tree %>%
     dplyr::bind_rows() %>%
     dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
@@ -39,9 +41,10 @@ shape_tree_initial <- function(tree) {
   return(tree)
 }
 
-flametree_plot_initial <- function(tree,
-                           background = "antiquewhite4",
-                           palette = "viridis::inferno") {
+
+plot_trees <- function(tree,
+                                background = "antiquewhite4",
+                                palette = "viridis::inferno") {
   # specify the mapping
   mapping <- ggplot2::aes(
     x = coord_x,      # x-coordinate
@@ -52,11 +55,21 @@ flametree_plot_initial <- function(tree,
   )
   # build the ggplot
   picture <- ggplot2::ggplot(data = tree, mapping = mapping) +
-    ggforce::geom_bezier2(show.legend = FALSE, lineend = "round") +
+    geom_path()+
+    theme_void() +
+    #ggplot2::theme(
+    #  panel.background = ggplot2::element_rect(
+    #    fill = "white",
+    #    colour = "black"
+    #  )) +
+    #ggforce::geom_bezier2(show.legend = FALSE, lineend = "round") +
     paletteer::scale_color_paletteer_c(palette = palette) #+
-    #theme_mono(color = background)
+  #theme_mono(color = background)
 
   return(picture)
 }
 
 
+plant_forest <- function(ntrees = 60){
+   map(.x = 1:ntrees, .f = ~stalk())
+}

@@ -42,3 +42,4 @@ vignettes/*.pdf
 .RData
 .Rproj.user
 *.html
+.Rbuildignore
