@@ -1,35 +1,27 @@
----
-title: "place_grow_plot"
-author: "Emily Palmer"
-date: "11/5/2020"
-output: github_document
----
+place\_grow\_plot
+================
+Emily Palmer
+11/5/2020
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(ggforce)
-devtools::load_all()
-```
+## Take three core functions, and try to edit them for my purposes
 
-## Take three core functions, and try to edit them for my purposes 
+First of all, I will try to grow the “saplings” at random locations on
+the plot. Later I will want to have more than 1 tree on the plot.
 
-First of all, I will try to grow the "saplings" at random locations on the plot. Later I will want to have more than 1 tree on the plot. 
-
-I will dig in to three of the core functions `grow_sampling()`, `shape_tree()` and `flame_tree_plot()`, and see if editing them will do much good.
+I will dig in to three of the core functions `grow_sampling()`,
+`shape_tree()` and `flame_tree_plot()`, and see if editing them will do
+much good.
 
 ![](../results/bad_tree.png)
 
 (Is there a `here()` call for paths in markdown?)
 
-Hmm not a tree, and not what I was expecting. 
+Hmm not a tree, and not what I was expecting.
 
-Things I tried: 
- - remove the `geom_bezier2` call and `palletteer` 
- - added back `palletteer`
- - playing with range for initial placement 
+Things I tried: - remove the `geom_bezier2` call and `palletteer` -
+added back `palletteer` - playing with range for initial placement
 
-```{r, eval = F}
+``` r
 #plot 1 seedling
 stalk() %>% 
   arborist_call() %>%
@@ -61,12 +53,8 @@ plant_forest(ntrees = 50) %>%
 filename <- here::here("results",
                        paste0("tree",now(),".png"))
 ggsave(filename)
-  
 ```
 
+### My first forest:
 
-
-
-### My first forest: 
-
-![](../results/tree2020-11-05 20:35:00.png)
+![](../results/tree2020-11-05%2020:35:00.png)
