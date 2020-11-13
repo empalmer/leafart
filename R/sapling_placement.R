@@ -158,7 +158,8 @@ plant_forest_stalks <- function(ntrees = 60){
 
 
 plant_forest_branches <- function(ntrees = 3, param){
-  map(.x = 1:ntrees,
-      .f = ~grow_tree(stalk(), param = param))
+  map_dfr(.x = 1:ntrees,
+      .f = ~grow_tree(stalk(), param = param) %>%
+        arborist_call() %>% mutate(tree_id = .x))
 }
 

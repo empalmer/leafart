@@ -38,7 +38,15 @@ stalk() %>%
   #xlim(c(0,100)) + ylim(c(0,100)) + 
   theme_void() + theme(legend.position = "none")
 
-
+plant_forest_branches(ntrees = 10,param = param) %>%
+  ggplot(aes(x = coord_x,
+             y= coord_y, 
+             group= tree_id))+
+             #size = seg_wid, 
+             #color = seg_col) + 
+  geom_path(color = "forestgreen") + 
+  #xlim(c(0,100)) + ylim(c(0,100)) + 
+  theme_void() + theme(legend.position = "none")
 
 ```
 
