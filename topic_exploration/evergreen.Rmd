@@ -1,7 +1,7 @@
 ---
-title: "branches"
+title: "Evergreen trees"
 author: "Emily Palmer"
-date: "11/11/2020"
+date: "11/13/2020"
 output: github_document
 ---
 
@@ -11,17 +11,14 @@ library(tidyverse)
 devtools::load_all()
 ```
 
-## Test the branches 
-
-
-Added functions grow_layer and grow_tree - these should add branches to the stalks or "saplings" from last week 
+# Make the trees look like evergreens 
 
 ```{r}
 param <- list(
     seed = 286,    # seed for the RNG
     time = 6,    # time (iterations) to grow the tree
     scale = c(.8,.9),  # possible values for rescaling at each time
-    angle = c(-10,0,10),  # possible values for redirect at each time
+    angle = c(-10,0),  # possible values for redirect at each time
     split = 3,  # number of new shoots from each old shoot at each time
     prune = 0  # probability of immediately pruning a new shoot
   )
@@ -38,16 +35,5 @@ stalk() %>%
   geom_path(color = "green") + 
   #xlim(c(0,100)) + ylim(c(0,100)) + 
   theme_void() + theme(legend.position = "none")
-# multiple trees 
-plant_forest_branches(ntrees = 10,param = param) %>%
-  ggplot(aes(x = coord_x,
-             y= coord_y, 
-             group= tree_id))+
-             #size = seg_wid, 
-             #color = seg_col) + 
-  geom_path(color = "forestgreen") + 
-  #xlim(c(0,100)) + ylim(c(0,100)) + 
-  theme_void() + theme(legend.position = "none")
-
 ```
 
