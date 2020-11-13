@@ -1,3 +1,4 @@
+
 grow_sapling_initial <- function() {
   sapling <- tibble::tibble(
     #x_0 = 0, y_0 = 0,  # first shoot starts at origin

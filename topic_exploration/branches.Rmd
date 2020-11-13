@@ -1,19 +1,71 @@
-# This function is what initializes each tree - basically just the stalk
-stalk <- function() {
+---
+title: "branches"
+author: "Emily Palmer"
+date: "11/11/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Test the branches 
+
+
+Added functions grow_layer and grow_tree - these should add branches to the stalks or "saplings" from last week 
+
+```{r}
+param <- list(
+    seed = 286,    # seed for the RNG
+    time = 6,    # time (iterations) to grow the tree
+    scale = c(.8,.9),  # possible values for rescaling at each time
+    angle = c(-10,10,-20),  # possible values for redirect at each time
+    split = 3,  # number of new shoots from each old shoot at each time
+    prune = 0  # probability of immediately pruning a new shoot
+  )
+
+stalk() %>% 
+  grow_tree(. , param = param) %>% 
+  arborist_call() %>%
+  ggplot(aes(x = coord_x,
+             y= coord_y, 
+             group= id_path),
+         color = "green")+
+             #size = seg_wid, 
+             #color = seg_col) + 
+  geom_path(color = "green") + 
+  #xlim(c(0,100)) + ylim(c(0,100)) + 
+  theme_void() + theme(legend.position = "none")
+
+
+
+```
+
+
+```{r}
+grow_sapling <- function() {
+
   sapling <- tibble::tibble(
-    # Choose a random first location
+    
     x_0 = sample(1:100,1),
     y_0 = sample(1:100,1),
 
     x_1 = x_0, y_1 = y_0 + .5, # first shoot guide is its midpoint
     #x_2 = 0, y_2 = 1,  # first shoot grow to y = 1
     x_2 = x_0, y_2 = y_0 + 1,
+    
+    #x_0 = 0, y_0 = 0,  # first shoot starts at origin
+    
+    #x_1 = 0, y_1 = .5, # first shoot guide is its midpoint
+    #x_2 = 0, y_2 = 1,  # first shoot grow to y = 1
     seg_deg = 90,      # segment orientation is vertical
     seg_len = 1,       # segment length is 1
     id_time = 1L       # the acorn grows at "time 1"
   )
   return(sapling)
 }
+
 
 # for each existing shoot on the tree, grow an additional shoot that
 # extends it; then prune some of them away
@@ -97,68 +149,5 @@ shape_tree <- function(tree) {
 
   return(tree)
 }
-
-# This function rearanges the data in a neat way for it to plot - no tree growing here
-arborist_call <- function(tree) {
-  tree <- tree %>%
-    dplyr::bind_rows() %>%
-    dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
-    tidyr::pivot_longer(
-      cols = x_0:y_2,
-      names_to = "id_step",
-      values_to = "coord"
-    ) %>%
-    tidyr::separate(col = id_step, into = c("axis", "id_step")) %>%
-    tidyr::pivot_wider(names_from = axis, values_from = coord) %>%
-    dplyr::mutate(
-      id_step = as.integer(id_step),
-      seg_col = sqrt(x ^ 2 + y ^ 2) + (seg_deg - 90) / 10,
-      seg_wid = exp(-id_time^2 / 10)
-    ) %>%
-    dplyr::rename(coord_x = x, coord_y = y) %>%
-    dplyr::select(
-      coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
-      id_time, id_path, id_step
-    )
-  return(tree)
-}
-
-
-plot_trees <- function(tree,
-                                background = "antiquewhite4",
-                                palette = "viridis::inferno") {
-  # specify the mapping
-  mapping <- ggplot2::aes(
-    x = coord_x,      # x-coordinate
-    y = coord_y,      # y-coordinate
-    group = id_path,  # each segment/path is a single bezier curve
-    size = seg_wid,   # the seg_wid variable is used to set line width
-    color = seg_col   # the seg_col variable is used to set line colour
-  )
-  # build the ggplot
-  picture <- ggplot2::ggplot(data = tree, mapping = mapping) +
-    geom_path()+
-    theme_void() +
-    #ggplot2::theme(
-    #  panel.background = ggplot2::element_rect(
-    #    fill = "white",
-    #    colour = "black"
-    #  )) +
-    #ggforce::geom_bezier2(show.legend = FALSE, lineend = "round") +
-    paletteer::scale_color_paletteer_c(palette = palette) #+
-  #theme_mono(color = background)
-
-  return(picture)
-}
-
-
-plant_forest_stalks <- function(ntrees = 60){
-   map(.x = 1:ntrees, .f = ~stalk())
-}
-
-
-plant_forest_branches <- function(ntrees = 3, param){
-  map(.x = 1:ntrees,
-      .f = ~grow_tree(stalk(), param = param))
-}
+```
 
