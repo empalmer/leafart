@@ -1,0 +1,28 @@
+---
+title: "Week 9"
+author: "Emily Palmer"
+date: "11/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+devtools::load_all()
+```
+
+## Test functions are working 
+
+
+```{r}
+
+```
+
+
+## Play with different parameter values and output plots 
+
+
+```{r}
+
+```
+

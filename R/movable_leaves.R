@@ -1,21 +1,80 @@
-
-radians <- function(degree) {
-  2 * pi * degree / 360
-}
-
-
-#' Initialize a single leaf
+#' Split the end of a branch
 #'
-#' This function initilizes a single leaf starting at the origin
-#' It is basically
+#' This is the one iteration that is repeated to
 #'
-#' @return a tibble iwth a basic leaf
+#' @param leaf
+#' @param param
+#' @param time
+#'
+#' @return
 #' @export
 #'
 #' @examples
+one_branch_origin <- function(leaf, param, time) {
+  n_shoots <- nrow(leaf)
+  scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
+  angle_adjust <- sample(x = param$angle, size = n_shoots, replace = TRUE)
+
+  leaf <- leaf %>%
+    dplyr::mutate(
+      x_0 = x_2,
+      y_0 = y_2,
+      length = length * scaled_length,
+      x_1 = x_0 + length/2 * cos(radians(angle)),
+      y_1 = y_0 + length/2 * sin(radians(angle)),
+      angle = angle + angle_adjust,
+      id_time = id_time + 1L,
+      x_2 = x_0 + length * cos(radians(angle)) ,
+      y_2 = y_0 + length * sin(radians(angle)),
+    )
+
+  return(leaf)
+}
+
+
+
+#' Grow every layer of the leaf
 #'
-initialize <- function(){
-  leaf <- tibble::tibble(
+#' At every layer of the leaf, the
+#'
+#' @param leaf
+#' @param param
+#' @param time
+#'
+#' @return
+#' @export
+#'
+#' @examples
+grow_leaf_layers_origin <- function(leaf, param,time) {
+  leaf_growth <- purrr::map_dfr(
+    .x = 1:param$split,
+    .f = one_branch_origin,
+    leaf = leaf,
+    param = param
+  )
+  return(leaf_growth)
+}
+
+
+#' Create 1 leaf
+#'
+#' This function is the highest level to create a leaf.
+#'
+#' It starts with an initial leaf, which is essentially just a stalk
+#'
+#' It calls growth_leaf_layers and one_branch to recursively grow the tree
+#'
+#'
+#' @param param A list of parameter values that give the leaves their
+#' shape
+#'
+#' @return
+#' @export
+#'
+#' @examples
+full_leaf_origin <- function(param) {
+
+  initial_leaf <- tibble::tibble(
     # All leafs have a zero location to initialize.
     x_0 = 0,
     y_0 = 0,
@@ -40,47 +99,11 @@ initialize <- function(){
     #x_2 = x_0 + cos(angle),
     #y_2 = y_0 + sin(angle),
 
-
   )
-  return(leaf)
-}
 
-growth <- function(leaf, param, time) {
-  n_shoots <- nrow(leaf)
-  scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
-  angle_adjust <- sample(x = param$angle, size = n_shoots, replace = TRUE)
-
-  leaf <- leaf %>%
-    dplyr::mutate(
-      x_0 = x_2,
-      y_0 = y_2,
-      length = length * scaled_length,
-      x_1 = x_0 + length/2 * cos(radians(angle)),
-      y_1 = y_0 + length/2 * sin(radians(angle)),
-      angle = angle + angle_adjust,
-      id_time = id_time + 1L,
-      x_2 = x_0 + length * cos(radians(angle)) ,
-      y_2 = y_0 + length * sin(radians(angle)),
-    )
-
-  return(leaf)
-}
-
-grow_leaf_layers <- function(leaf, param,time) {
-  leaf_growth <- purrr::map_dfr(
-    .x = 1:param$split,
-    .f = growth,
-    leaf = leaf,
-    param = param
-  )
-  return(leaf_growth)
-}
-
-
-full_leaf <- function(initial_leaf, param) {
   full_leaf <- purrr::accumulate(
     .x = 1:param$time,
-    .f = grow_leaf_layers,
+    .f = grow_leaf_layers_origin,
     .init = initial_leaf,
     param = param
   )
@@ -89,21 +112,7 @@ full_leaf <- function(initial_leaf, param) {
 
 
 
-rake_leaves <- function(leaf) {
-  leaf <- leaf %>%
-    dplyr::bind_rows() %>%
-    dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
-    tidyr::pivot_longer(
-      cols = x_0:y_2,
-      names_to = "id_step",
-      values_to = "coord"
-    ) %>%
-    tidyr::separate(col = id_step, into = c("axis", "id_step")) %>%
-    tidyr::pivot_wider(names_from = axis, values_from = coord) %>%
-    dplyr::select(x,y) %>%
-    dplyr::mutate(color = sample(1:6,1))
-  return(leaf)
-}
+
 
 origin_leaf_pile <- function(n_leaf, n_distinct){
 
@@ -143,17 +152,4 @@ leaf_location <- function(leaf,x_diff,y_diff){
 }
 
 
-plot_leaves <- function(leaves,
-                        pal = c( "#D1CEC5", "#997C67", "#755330",
-                                 "#B0703C", "#DBA72E", "#E3CCA1")){
-  p <- ggplot(leaves,aes(x = x,y= y,
-                         #group= leaf_id,
-                         color = factor(color))) +
-    geom_path() +
-    theme_void() +
-    theme(legend.position = "none",
-          plot.background = element_rect(fill = "gray74")) +
-    scale_color_manual(values = pal)
-  return(p)
 
-}
