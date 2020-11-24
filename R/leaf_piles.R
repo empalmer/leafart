@@ -1,6 +1,6 @@
-make_the_leaves_fall <- function(nleaves = 3, param){
+make_the_leaves_fall <- function(param, nleaves = 3){
   map_dfr(.x = 1:nleaves,
-          .f = ~grow_leaf(leaf_stalk(), param = param) %>%
-            rake_neatly() %>%
+          .f = ~grow_leaf_random(param = param) %>%
+            rake_leaves() %>%
             mutate(leaf_id = .x))
 }

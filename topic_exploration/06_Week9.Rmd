@@ -15,10 +15,13 @@ devtools::load_all()
 
 ### Test the movable leaves work 
 ```{r}
+# One leaf
 get_gingko_params() %>% 
   full_leaf_origin() %>% 
-  rake_leaves()
+  rake_leaves() %>% 
+  plot_leaves()
 
+# many leaves 
 
 
 ```
@@ -26,8 +29,20 @@ get_gingko_params() %>%
 ### Test the initially randomly placed and rotated leaves work
 
 ```{r}
+# one leaf
+get_gingko_params() %>%
+  grow_leaf_random() %>% 
+  rake_leaves() %>%
+  plot_leaves()
+
+# multiple leaves
 get_gingko_params() %>% 
-  
+  make_the_leaves_fall() %>% 
+  plot_leaves()
+
+
+#grow_leaf_layers_random(initialize, param)
+#one_branch_random(partial_leaf = initialize, param = param)
 ```
 
 

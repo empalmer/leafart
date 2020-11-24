@@ -1,37 +1,43 @@
-# This function is what initializes each tree - basically just the stalk
-leaf_stalk <- function() {
-  sapling <-
-  return(sapling)
-}
 
 # for each existing shoot on the tree, grow an additional shoot that
 # extends it; then prune some of them away
-grow_leaf_veins <- function(time, shoots, param) {
-  n_shoots <- nrow(shoots)
+one_branch_random <- function(time, partial_leaf, param) {
+  n_shoots <- nrow(partial_leaf)
   n_pruned <- stats::rbinom(n = 1, size = n_shoots - 1, prob = param$prune)
 
   ch_seg_len <- sample(x = param$scale, size = n_shoots, replace = TRUE)
   ch_seg_deg <- sample(x = param$angle, size = n_shoots, replace = TRUE)
 
-  shoots <- shoots %>%
+
+  partial_leaf <- partial_leaf %>%
     dplyr::mutate(
       x_0 = x_2,
       y_0 = y_2,
       seg_len = seg_len * ch_seg_len,
-      x_1 = x_0 + extend_x(seg_len/2, seg_deg),
-      y_1 = y_0 + extend_y(seg_len/2, seg_deg),
+      x_1 = x_0 + seg_len/2 * cos(radians(seg_deg)),
+      y_1 = y_0 + seg_len/2 * sin(radians(seg_deg)),
       seg_deg = seg_deg + ch_seg_deg,
       id_time = id_time + 1L,
-      x_2 = x_0 + extend_x(seg_len, seg_deg) ,
-      y_2 = y_0 + extend_y(seg_len, seg_deg),
+      x_2 = x_0 + seg_len * cos(radians(seg_deg)) ,
+      y_2 = y_0 + seg_len * sin(radians(seg_deg)),
     ) %>%
     dplyr::sample_n(size = n_shoots - n_pruned)
 
-  return(shoots)
+  return(partial_leaf)
+}
+
+grow_leaf_layers_random <- function(leaf, param,time) {
+  leaf_growth <- purrr::map_dfr(
+    .x = 1:param$split,
+    .f = one_branch_random,
+    partial_leaf = leaf,
+    param = param
+  )
+  return(leaf_growth)
 }
 
 
-grow_leaf_random <- function(sapling, param) {
+grow_leaf_random <- function(param) {
   # create a tibble that initializes one leaf
   initialize <- tibble(
     # Choose a random first location, smaller selection for leafs falling
@@ -46,7 +52,7 @@ grow_leaf_random <- function(sapling, param) {
 
   tree <- purrr::accumulate(
     .x = 1:param$time,
-    .f = grow_leaf_layer,
+    .f = grow_leaf_layers_random,
     .init = initialize,
     param = param
   )

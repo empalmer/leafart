@@ -18,3 +18,5 @@ get_gingko_params <- function(){
   )
   return(params)
 }
+
+# maybe add a randomness to the scale and angle for a range of values that make it look good?
