@@ -166,3 +166,30 @@ plant_forest_branches <- function(ntrees = 3, param){
         arborist_call() %>% mutate(tree_id = .x))
 }
 
+# old version, with extra stuff I dont use
+rake_neatly_old <- function(tree) {
+  tree <- tree %>%
+    dplyr::bind_rows() %>%
+    dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
+    tidyr::pivot_longer(
+      cols = x_0:y_2,
+      names_to = "id_step",
+      values_to = "coord"
+    ) %>%
+    tidyr::separate(col = id_step, into = c("axis", "id_step")) %>%
+    tidyr::pivot_wider(names_from = axis, values_from = coord) %>%
+    dplyr::mutate(
+      id_step = as.integer(id_step),
+      seg_col = sqrt(x ^ 2 + y ^ 2) + (seg_deg - 90) / 10,
+      seg_wid = exp(-id_time^2 / 10)
+    ) %>%
+    dplyr::rename(coord_x = x, coord_y = y) %>%
+    dplyr::select(
+      coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
+      id_time, id_path, id_step
+    ) %>%
+    dplyr::mutate(
+      color = sample(1:6,1)
+    )
+  return(tree)
+}

@@ -45,7 +45,7 @@ one_branch_origin <- function(leaf, param, time) {
 #' @export
 #'
 #' @examples
-grow_leaf_layers_origin <- function(leaf, param,time) {
+grow_leaf_layers <- function(leaf, param,time) {
   leaf_growth <- purrr::map_dfr(
     .x = 1:param$split,
     .f = one_branch_origin,
@@ -103,7 +103,7 @@ full_leaf_origin <- function(param) {
 
   full_leaf <- purrr::accumulate(
     .x = 1:param$time,
-    .f = grow_leaf_layers_origin,
+    .f = grow_leaf_layers,
     .init = initial_leaf,
     param = param
   )

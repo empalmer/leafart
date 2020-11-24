@@ -1,7 +1,7 @@
 
 
-
-rake_leaves_origin <- function(leaf) {
+# new version, trimmed down
+rake_leaves <- function(leaf) {
   leaf <- leaf %>%
     dplyr::bind_rows() %>%
     dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
@@ -16,3 +16,6 @@ rake_leaves_origin <- function(leaf) {
     dplyr::mutate(color = sample(1:6,1))
   return(leaf)
 }
+
+
+

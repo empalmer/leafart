@@ -13,10 +13,24 @@ devtools::load_all()
 
 ## Test functions are working 
 
-
+### Test the movable leaves work 
 ```{r}
+get_gingko_params() %>% 
+  full_leaf_origin() %>% 
+  rake_leaves()
+
+
 
 ```
+
+### Test the initially randomly placed and rotated leaves work
+
+```{r}
+get_gingko_params() %>% 
+  
+```
+
+
 
 
 ## Play with different parameter values and output plots 
