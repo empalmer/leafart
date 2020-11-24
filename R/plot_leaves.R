@@ -5,7 +5,7 @@ plot_leaves <- function(leaves,
   # Are we plotting multiple leaves?
   if("leaf_id" %in% colnames(leaves)){
     p <- ggplot(leaves,aes(x = x,y= y,
-                           #group= leaf_id,
+                           group= leaf_id,
                            color = factor(color))) +
       geom_path() +
       theme_void() +

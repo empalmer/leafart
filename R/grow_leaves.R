@@ -4,18 +4,18 @@
 #'
 #' @param leaf
 #' @param param
-#' @param time
+#' @param n_grow_iter
 #'
 #' @return
 #' @export
 #'
 #' @examples
-one_branch_origin <- function(leaf, param, time) {
-  n_shoots <- nrow(leaf)
+one_branch <- function(partial_leaf, param, n_grow_iter) {
+  n_shoots <- nrow(partial_leaf)
   scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
   angle_adjust <- sample(x = param$angle, size = n_shoots, replace = TRUE)
 
-  leaf <- leaf %>%
+  partial_leaf <- partial_leaf %>%
     dplyr::mutate(
       x_0 = x_2,
       y_0 = y_2,
@@ -23,12 +23,12 @@ one_branch_origin <- function(leaf, param, time) {
       x_1 = x_0 + length/2 * cos(radians(angle)),
       y_1 = y_0 + length/2 * sin(radians(angle)),
       angle = angle + angle_adjust,
-      id_time = id_time + 1L,
+      iter_n = iter_n + 1L,
       x_2 = x_0 + length * cos(radians(angle)) ,
       y_2 = y_0 + length * sin(radians(angle)),
     )
 
-  return(leaf)
+  return(partial_leaf)
 }
 
 
@@ -39,24 +39,58 @@ one_branch_origin <- function(leaf, param, time) {
 #'
 #' @param leaf
 #' @param param
-#' @param time
+#' @param n_grow_iter
 #'
 #' @return
 #' @export
 #'
 #' @examples
-grow_leaf_layers_origin <- function(leaf, param,time) {
+grow_leaf_layers <- function(leaf, param, n_grow_iter) {
   leaf_growth <- purrr::map_dfr(
     .x = 1:param$split,
-    .f = one_branch_origin,
-    leaf = leaf,
+    .f = one_branch,
+    partial_leaf = leaf,
     param = param
   )
   return(leaf_growth)
 }
 
 
-#' Create 1 leaf
+
+
+#' Grow ONE leaf at a random position and angle
+#'
+#' @param param
+#'
+#' @return
+#' @export
+#'
+#' @examples
+grow_leaf_random <- function(param) {
+  # create a tibble that initializes one leaf
+  initialize <- tibble(
+    # Choose a random first location, smaller selection for leafs falling
+    x_0 = sample(1:50,1),
+    y_0 = sample(1:50,1),
+    x_1 = x_0, y_1 = y_0 + .5, # first shoot guide is its midpoint
+    x_2 = x_0, y_2 = y_0 + 1,
+    angle = sample(-180:180,1), # Random orientation of leaf orientation
+    length = 1,       # initial
+    iter_n = 1L       # time used for
+  )
+
+  tree <- purrr::accumulate(
+    .x = 1:param$n_grow_iter,
+    .f = grow_leaf_layers,
+    .init = initialize,
+    param = param
+  )
+  return(tree)
+}
+
+
+
+#' Grow ONE leaf at ORIGIN
 #'
 #' This function is the highest level to create a leaf.
 #'
@@ -91,7 +125,7 @@ full_leaf_origin <- function(param) {
     angle = 90,
     #angle = sample(-180:180,1),
     length = 1L,       # initial segment length is 1
-    id_time = 1L
+    iter_n = 1L
     # first shoot guide is its midpoint
     #x_1 = x_0 + .5 * cos(angle),
     #y_1 = y_0 + .5 * sin(angle),
@@ -102,54 +136,10 @@ full_leaf_origin <- function(param) {
   )
 
   full_leaf <- purrr::accumulate(
-    .x = 1:param$time,
-    .f = grow_leaf_layers_origin,
+    .x = 1:param$n_grow_iter,
+    .f = grow_leaf_layers,
     .init = initial_leaf,
     param = param
   )
   return(full_leaf)
 }
-
-
-
-
-
-origin_leaf_pile <- function(n_leaf, n_distinct){
-
-}
-
-initial_angle <- function(leaf){
-  rot_angle <- sample(-180:180,1)
-
-  leaf <- leaf %>%
-    mutate(xnew = x * cos(radian(rot_angle)) - y * sin(radian(rot_angle)),
-           ynew = x * sin(radian(rot_angle)) + y * cos(radian(rot_angle))) %>%
-    select()
-  dplyr::rename(coord_x = x, coord_y = y) %>%
-    dplyr::select(
-      coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
-      id_time, id_path, id_step
-    )
-
-
-}
-
-initial_location <- function(leaf){
-  x_loc <- sample(1:50,1)
-  y_loc <- sample(1:50,1)
-
-  leaf <- leaf %>%
-    mutate(x = x + x_loc,
-           y = y + y_loc)
-  return(leaf)
-}
-
-
-
-
-leaf_location <- function(leaf,x_diff,y_diff){
-
-}
-
-
-

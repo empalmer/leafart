@@ -40,9 +40,18 @@ get_gingko_params() %>%
   make_the_leaves_fall() %>% 
   plot_leaves()
 
-
-#grow_leaf_layers_random(initialize, param)
-#one_branch_random(partial_leaf = initialize, param = param)
+initialize <- tibble(
+    # Choose a random first location, smaller selection for leafs falling
+    x_0 = sample(1:50,1),
+    y_0 = sample(1:50,1),
+    x_1 = x_0, y_1 = y_0 + .5, # first shoot guide is its midpoint
+    x_2 = x_0, y_2 = y_0 + 1,
+    angle = sample(-180:180,1), # Random orientation of leaf orientation
+    length = 1,       # initial
+    iter_n = 1L       # time used for
+  )
+grow_leaf_layers(initialize, param)
+one_branch(partial_leaf = initialize, param = param)
 ```
 
 
