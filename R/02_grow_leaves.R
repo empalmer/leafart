@@ -104,20 +104,31 @@ grow_leaf_random <- function(param) {
 #' @examples
 grow_leaf <- function(param) {
 
+  # initialize at a random location or at origin
+  if(param$init_location == "random"){
+    x_0 <- sample(1:50,1)
+    y_0 <- sample(1:50,1)
+    init_angle <- sample(-180:180,1)
+  } else{
+    x_0 <- 0
+    y_0 <- 0
+    init_angle <- 90
+  }
+
   initial_leaf <- tibble::tibble(
     # All leafs have a zero location to initialize.
     #x_0 = 0,
     #y_0 = 0,
-    x_0 = param$x_0,
-    y_0 = param$y_0,
+    x_0 = x_0,
+    y_0 = y_0,
 
-    x_1 = x_0 + cos(radians(param$init_angle)),
-    y_1 = y_0 + sin(radians(param$init_angle)),
+    x_1 = x_0 + cos(radians(init_angle)),
+    y_1 = y_0 + sin(radians(init_angle)),
 
     # Default to vertical
     #angle = pi,
     #angle = 90,
-    angle = param$init_angle,
+    angle = init_angle,
     length = 1L,       # initial segment length is 1
     iter_n = 1L
   )

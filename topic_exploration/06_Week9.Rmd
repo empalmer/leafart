@@ -15,11 +15,11 @@ devtools::load_all()
 
 ### Test the movable leaves work 
 ```{r}
-param <- get_gingko_params(location = "origin")
+param <- get_gingko_params(init_location = "origin")
 
 # One leaf
-get_gingko_params(location = "origin") %>% 
-  full_leaf() %>% 
+get_gingko_params(init_location = "origin") %>% 
+  grow_leaf() %>% 
   rake_leaves() %>% 
   plot_leaves()
 
@@ -32,9 +32,9 @@ get_gingko_params(location = "origin") %>%
 
 ```{r}
 # one leaf
-param <- get_gingko_params(location = "random")
+param <- get_gingko_params(init_location = "random")
 
-get_gingko_params(location = "random") %>%
+get_gingko_params(init_location = "random") %>%
   grow_leaf() %>% 
   rake_leaves() %>%
   plot_leaves()

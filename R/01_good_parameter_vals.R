@@ -14,27 +14,14 @@
 #'
 #' @export
 #'
-get_gingko_params <- function(location = "random"){
-  if(location == "random"){
-    x_0 = sample(1:50,1)
-    y_0 = sample(1:50,1)
-    init_angle = sample(-180:180,1)
-  }
-  else{
-    x_0 = 0
-    y_0 = 0
-    init_angle = 90
-  }
-
+get_gingko_params <- function(init_location = "random"){
   params <- list(
     seed = 286,
     n_grow_iter = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 3,
-    x_0 = x_0,
-    y_0 = y_0,
-    init_angle = init_angle
+    init_location = init_location
   )
   return(params)
 }
