@@ -17,9 +17,6 @@ devtools::load_all()
 ```{r}
 param <- get_gingko_params(init_location = "origin")
 
-leaf <- get_gingko_params(init_location = "origin") %>% 
-  grow_leaf()
-
 # One leaf
 get_gingko_params(init_location = "origin") %>% 
   grow_leaf() %>% 
@@ -77,5 +74,3 @@ leaf <- get_gingko_params() %>%
 
 ```
 
-
-## Timing test 

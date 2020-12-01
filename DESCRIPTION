@@ -1,4 +1,4 @@
-Package: fireart
+Package: leafart
 Title: Generative Art for PNW Fire Impacted Landscapes
 Version: 0.0.0.9000
 Authors@R: 
@@ -17,4 +17,5 @@ RoxygenNote: 7.1.1
 Imports: 
     purrr,
     readr,
-    ggforce
+    dplyr,
+    tidyr
