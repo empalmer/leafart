@@ -2,7 +2,7 @@
 title: "Week 9"
 author: "Emily Palmer"
 date: "11/23/2020"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,6 +17,9 @@ devtools::load_all()
 ```{r}
 param <- get_gingko_params(init_location = "origin")
 
+leaf <- get_gingko_params(init_location = "origin") %>% 
+  grow_leaf()
+
 # One leaf
 get_gingko_params(init_location = "origin") %>% 
   grow_leaf() %>% 
@@ -24,7 +27,9 @@ get_gingko_params(init_location = "origin") %>%
   plot_leaves()
 
 # many leaves 
-
+get_gingko_params(init_location = "origin") %>% 
+  spread_leaves() %>% 
+  plot_leaves()
 
 ```
 
@@ -41,7 +46,7 @@ get_gingko_params(init_location = "random") %>%
 
 # multiple leaves
 get_gingko_params() %>% 
-  make_the_leaves_fall() %>% 
+  create_leaf_pile() %>% 
   plot_leaves()
 
 initialize <- tibble(
@@ -72,3 +77,5 @@ leaf <- get_gingko_params() %>%
 
 ```
 
+
+## Timing test 

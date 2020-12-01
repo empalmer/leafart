@@ -14,14 +14,21 @@
 #'
 #' @export
 #'
-get_gingko_params <- function(init_location = "random"){
+get_gingko_params <- function(init_location = "random",
+                              nleaves = 10,
+                              ndistinct = 6,
+                              color_pallete = c( "#D1CEC5", "#997C67", "#755330",
+                                                       "#B0703C", "#DBA72E", "#E3CCA1")){
   params <- list(
+    nleaves = nleaves,
+    ndistinct = ndistinct,
     seed = 286,
     n_grow_iter = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 3,
-    init_location = init_location
+    init_location = init_location,
+    color_pallete = color_pallete
   )
   return(params)
 }

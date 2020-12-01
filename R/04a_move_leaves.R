@@ -1,25 +1,24 @@
 
-origin_leaf_pile <- function(n_leaf, n_distinct){
 
-}
-
-initial_angle <- function(leaf){
+# Rotate around the origin (before leafs are moved )
+rotate_leaf <- function(leaf){
   rot_angle <- sample(-180:180,1)
 
   leaf <- leaf %>%
-    mutate(xnew = x * cos(radian(rot_angle)) - y * sin(radian(rot_angle)),
-           ynew = x * sin(radian(rot_angle)) + y * cos(radian(rot_angle))) %>%
-    select()
-  dplyr::rename(coord_x = x, coord_y = y) %>%
-    dplyr::select(
-      coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
-      iter_n, id_path, id_step
-    )
+    mutate(xnew = x * cos(radians(rot_angle)) - y * sin(radians(rot_angle)),
+           ynew = x * sin(radians(rot_angle)) + y * cos(radians(rot_angle))) %>%
+    select(xnew,ynew,color,leaf_id) %>%
+    rename(x = xnew, y = ynew)
 
-
+    #dplyr::rename(x = xnew, coord_y = y) %>%
+    #dplyr::select(
+    #  coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
+    #  iter_n, id_path, id_step
+    #)
+  return(leaf)
 }
 
-initial_location <- function(leaf){
+place_leaf <- function(leaf){
   x_loc <- sample(1:50,1)
   y_loc <- sample(1:50,1)
 
@@ -30,11 +29,6 @@ initial_location <- function(leaf){
 }
 
 
-
-
-leaf_location <- function(leaf,x_diff,y_diff){
-
-}
 
 
 

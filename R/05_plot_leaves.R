@@ -1,7 +1,7 @@
 
-plot_leaves <- function(leaves,
-                        pal = c( "#D1CEC5", "#997C67", "#755330",
-                                 "#B0703C", "#DBA72E", "#E3CCA1")){
+plot_leaves <- function(leaves, pal = c( "#D1CEC5", "#997C67", "#755330",
+                                               "#B0703C", "#DBA72E", "#E3CCA1")){
+  #pal <- param$color_pallete
   # Are we plotting multiple leaves?
   if("leaf_id" %in% colnames(leaves)){
     p <- ggplot(leaves,aes(x = x,y= y,

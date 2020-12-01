@@ -1,6 +1,5 @@
 
 
-# new version, trimmed down
 rake_leaves <- function(leaf) {
   leaf <- leaf %>%
     dplyr::bind_rows() %>%
@@ -16,6 +15,7 @@ rake_leaves <- function(leaf) {
     dplyr::mutate(color = sample(1:6,1))
   return(leaf)
 }
+
 
 
 

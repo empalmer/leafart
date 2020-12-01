@@ -1,0 +1,46 @@
+---
+title: "Timing test"
+author: "Emily Palmer"
+date: "12/1/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+devtools::load_all()
+```
+
+
+# Check which method is faster 
+
+```{r}
+# With default parameters, number of leaves 10, ndistinct 6
+bench::mark(
+  fewer_distinct = {get_gingko_params(init_location = "origin") %>% 
+  spread_leaves() },
+  more_distinct = {get_gingko_params(init_location = "random") %>%
+  grow_leaf() %>% 
+  rake_leaves()},
+  check = FALSE
+)
+
+
+
+bench::mark(
+  fewer_distinct = {get_gingko_params(init_location = "origin", nleaves = 50, ndistinct = 3) %>% 
+  spread_leaves() },
+  more_distinct = {get_gingko_params(init_location = "random",nleaves = 50) %>%
+  grow_leaf() %>% 
+  rake_leaves()},
+  check = FALSE
+)
+```
+
+We have two methods to create a scatter of leaves. The first, randomly places the leaves, and has to create more distinct leaves. The second generates creates fewer distinct trees, and replicates the existing trees
+
+Even with many leaves, and few distinct leaves, the randomly placing each new leaf method is much faster.
+
+I would have thought that creating fewer trees and replicating and moving those leaves would have had a time improvement, but apparently not. 
+
+Still this second method is useful if I ever want to add on to this project by adding animation for wind, which would need move and rotate methods to move the leaves. 
