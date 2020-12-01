@@ -4,9 +4,9 @@ TO DO
 
 ## Milestones: 
 
-- [] Research and understand concepts and previous implementations of generative art (Milestones will likely be updated after I understand the work that will be involved)
-- [] Implement my own ideas 
-- [] Polish work: Document, test and R project (+and shiny app?)
+ - [X] Research and understand concepts and previous implementations of generative art (Milestones will likely be updated after I understand the work that will be involved)
+ - [X] Implement my own ideas 
+ - [] Polish work: Document, test and R project (+and shiny app?)
 
 
 ## Approximate timeline: 
