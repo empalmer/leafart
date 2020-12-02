@@ -2,7 +2,7 @@
 
 This package uses the process of creating generated trees in order to produce pretty leaf pictures with ggplot.
 
-!(/results/default_ginkgo_plot.png)
+![Ginkgo plot](/results/default_ginkgo_plot.png)
 
 
 ### Shiny app
