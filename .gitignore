@@ -29,6 +29,5 @@ vignettes/*.pdf
 .Rhistory
 .RData
 .Rproj.user
-*.html
 .Rbuildignore
 .DS_Store

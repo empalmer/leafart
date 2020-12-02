@@ -19,7 +19,7 @@ Trees are grown in layers, containing multiple branches. At the end of each bran
 
 The shape of the tree depends on parameters
 
-- Number of layers
+- Number of layers 
 - Angle to branch off 
 - Scale for length of new branch
 
