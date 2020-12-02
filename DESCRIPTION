@@ -1,5 +1,5 @@
 Package: leafart
-Title: Generative Art for PNW Fire Impacted Landscapes
+Title: Using generated trees to create leaf art
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Emily",

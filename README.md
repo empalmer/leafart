@@ -4,6 +4,10 @@ This package uses the process of creating generated trees in order to produce pr
 
 ![Ginkgo plot](/results/default_ginkgo_plot.png)
 
+### Presentation slides 
+
+Slides can be found at 
+
 ### How the plots are created 
 
 The plots are created by making multiple leaves, or trees (Trees look like leaves when we are zoomed out). We build the leaf/tree in layers, earlier layers are smaller. Each layer is composed of a set of branches. To grow the leaf/tree, at the end point of each branch in the layer, several new branches are grown from the endpoint, the number is determined by how many 'splits' there are. These grow off the old branch at a randomly selected angle from the parameter inputs, and the length is randomly scaled from the old branch length. 

@@ -1,0 +1,55 @@
+---
+title: "Using generated trees to create leaf art"
+subtitle: "https://github.com/ST541-Fall2020/empalmer-project-leafart"
+author: "Emily Palmer"
+
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+devtools::load_all()
+```
+
+
+## Creating the Trees {.smaller .columns-2}
+
+Trees are grown in layers, containing multiple branches. At the end of each branch, the next layer will split off into new branches
+
+The shape of the tree depends on parameters
+
+- Number of layers
+- Angle to branch off 
+- Scale for length of new branch
+
+```{r,echo = FALSE,  out.width="100%"}
+knitr::include_graphics(here::here("results","leaf_explanation.png"))
+```
+
+
+
+## The choice of parameter matters 
+Explore parameter choices using Shiny: 
+
+---- 
+
+Repeat many times and place and rotate randomly to create fallen leaves
+
+```{r, eval = FALSE}
+get_ginkgo_params(nleaves = 100) %>% 
+  create_leaf_pile() %>% 
+  plot_leaves()
+```
+
+```{r, echo = FALSE,  out.width="100%"}
+knitr::include_graphics(here::here("results","default_ginkgo_plot.png"))
+```
+
+
+## Using generated trees to create leaf art
+
+Emily Palmer
+ - https://github.com/ST541-Fall2020/empalmer-project-leafart
+ - Shiny link
+ - Emily Palmer
