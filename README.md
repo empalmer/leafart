@@ -6,7 +6,8 @@ This package uses the process of creating generated trees in order to produce pr
 
 ### Presentation slides 
 
-Slides can be found at 
+[Presentation slides](presentation/presentation_slides.html)
+
 
 ### How the plots are created 
 
