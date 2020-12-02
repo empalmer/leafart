@@ -18,13 +18,13 @@ devtools::load_all()
 param <- get_gingko_params(init_location = "origin")
 
 # One leaf
-get_gingko_params(init_location = "origin") %>% 
+get_ginkgo_params(init_location = "origin") %>% 
   grow_leaf() %>% 
   rake_leaves() %>% 
   plot_leaves()
 
 # many leaves 
-get_gingko_params(init_location = "origin") %>% 
+get_ginkgo_params(init_location = "origin") %>% 
   spread_leaves() %>% 
   plot_leaves()
 
@@ -34,15 +34,15 @@ get_gingko_params(init_location = "origin") %>%
 
 ```{r}
 # one leaf
-param <- get_gingko_params(init_location = "random")
+param <- get_ginkgo_params(init_location = "random")
 
-get_gingko_params(init_location = "random") %>%
+get_ginkgo_params(init_location = "random") %>%
   grow_leaf() %>% 
   rake_leaves() %>%
   plot_leaves()
 
 # multiple leaves
-get_gingko_params() %>% 
+get_ginkgo_params() %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 
@@ -60,8 +60,8 @@ grow_leaf_layers(initialize, param)
 one_branch(partial_leaf = initialize, param = param)
 
 
-leaf <- get_gingko_params() %>%
-  grow_leaf_random()
+leaf <- get_ginkgo_params() %>%
+  grow_leaf()
 ```
 
 

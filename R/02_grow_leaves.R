@@ -1,15 +1,17 @@
 #' Split the end of a branch
 #'
-#' This is the one iteration that is repeated to
+#' At each endpoint a leaf is growing from, split/branch depending on the parameters
+#' This is the one iteration that is repeated on each endpoint of each leaf layer
 #'
-#' @param leaf
-#' @param param
-#' @param n_grow_iter
 #'
-#' @return
+#'
+#' @param partial_leaf The leaf in progress of being grown
+#' @param param The parameters specifying how to grow the leaf
+#' @param n_grow_iter Keeps track of the growth
+#'
+#' @return The leaf with the new growth of splits
 #' @export
 #'
-#' @examples
 one_branch <- function(partial_leaf, param, n_grow_iter) {
   n_shoots <- nrow(partial_leaf)
   scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
@@ -31,18 +33,20 @@ one_branch <- function(partial_leaf, param, n_grow_iter) {
 
 
 
-#' Grow every layer of the leaf
+#' Grow one layer of the leaf
 #'
-#' At every layer of the leaf, the
+#' Leafs grow outward from the stem in layers. At each layer, we branch at each endpoint
 #'
-#' @param leaf
-#' @param param
-#' @param n_grow_iter
+#' Calls `one_branch()` at each of the endpoints in the current layer
 #'
-#' @return
+#' @param leaf The leaf in process of being grown
+#' @param param The parameters specifying how to grow the leaf
+#' @param n_grow_iter Keeps track of the growth
+#'
+#' @return The leaf with a newly grown layer
 #' @export
 #'
-#' @examples
+
 grow_leaf_layers <- function(leaf, param, n_grow_iter) {
   leaf_growth <- purrr::map_dfr(
     .x = 1:param$split,
@@ -54,43 +58,12 @@ grow_leaf_layers <- function(leaf, param, n_grow_iter) {
 }
 
 
-#' Grow ONE leaf at a random position and angle
-#'
-#' @param param
-#'
-#' @return
-#' @export
-#'
-#' @examples
-grow_leaf_random <- function(param) {
-  # create a tibble that initializes one leaf
-  initialize <- tibble(
-    # Choose a random first location, smaller selection for leafs falling
-    x_0 = sample(1:50,1),
-    y_0 = sample(1:50,1),
-    x_1 = x_0,
-    y_1 = y_0 + 1,
-    angle = sample(-180:180,1), # Random orientation of leaf orientation
-    length = 1,       # initial
-    iter_n = 1L       # time used for
-  )
 
-  tree <- purrr::accumulate(
-    .x = 1:param$n_grow_iter,
-    .f = grow_leaf_layers,
-    .init = initialize,
-    param = param
-  )
-  return(tree)
-}
-
-
-
-#' Grow ONE leaf at ORIGIN
+#' Grow ONE leaf
 #'
 #' This function is the highest level to create a leaf.
 #'
-#' It starts with an initial leaf, which is essentially just a stalk
+#' It starts with an initial leaf, which is essentially just a stalk. Depending on the parameter values, this is either grown at the origin or a randomly placed location
 #'
 #' It calls growth_leaf_layers and one_branch to recursively grow the tree
 #'
@@ -101,9 +74,8 @@ grow_leaf_random <- function(param) {
 #' @return
 #' @export
 #'
-#' @examples
-grow_leaf <- function(param) {
 
+grow_leaf <- function(param) {
   # initialize at a random location or at origin
   if(param$init_location == "random"){
     x_0 <- sample(1:50,1)

@@ -18,4 +18,6 @@ Imports:
     purrr,
     readr,
     dplyr,
-    tidyr
+    tidyr,
+    ggplot2,
+    magrittr

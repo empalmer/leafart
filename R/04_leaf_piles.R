@@ -1,3 +1,13 @@
+#' Create a pile of leaves
+#'
+#' @param param A list of parameters specifying how to grow the leaf and how many leaves to grow
+#'
+#' @return A data frame containing an x, y, and leaf_id column
+#' @export
+#'
+#' @examples
+#' get_ginkgo_params() %>% create_leaf_pile()
+#'
 create_leaf_pile <- function(param){
   nleaves <- param$nleaves
   map_dfr(.x = 1:nleaves,
@@ -7,10 +17,22 @@ create_leaf_pile <- function(param){
 }
 
 
+
+
+
+
+#' A different (slower) method for creating a pile of leaves
+#'
+#' This method was intended to spead up the process of generating trees. This method creates a smaller number of distinct trees (since they look similar in the end), and then randomly replicates those trees, and then randomly rotates and places them. It ends up being slower in the end
+#'
+#' @param param A list of parameters specifying how to grow the leaf and how many leaves to grow
+#'
+#' @return A data frame containing an x, y, and leaf_id column
+#' @export
+#'
 spread_leaves <- function(param){
   nleaves <- param$nleaves
   ndistinct <- param$ndistinct
-
   leaf_pile <- map(.x = 1:ndistinct,
                          .f = ~grow_leaf(param = param) %>%
                            rake_leaves() %>%
@@ -19,15 +41,6 @@ spread_leaves <- function(param){
     map2(1:nleaves, ~ (mutate(.x,leaf_id  = .y))) %>%
     map(rotate_leaf) %>%
     map_df(place_leaf)
-
-
-  # to ensure that there are at least ndistinct leaves:
-  #repeated_leaves <- sample(distinct_leaves, size = nleaves - ndistinct, replace = T)
-  #all_leaves <- c(distinct_leaves, repeatd_leaves)
-
-
-  # Change the id on the leafs, each leaf should have its own id
-  #re_id_leaves <- map(1:nleaves, ~ (mutate(sampled_leaves[[.x]],leaf_id  = .x)))
 
   return(leaf_pile)
 }

@@ -1,0 +1,80 @@
+---
+title: "Different parameter values"
+author: "Emily Palmer"
+date: "12/1/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+devtools::load_all()
+```
+
+## Parameters that work for ginkgo leaves
+
+```{r}
+get_ginkgo_params() %>% 
+  create_leaf_pile() %>% 
+  plot_leaves()
+```
+
+## Change n_grow_iter
+
+The number of "layers" the leaf has 
+
+```{r}
+list(nleaves = 1,
+    ndistinct = 1,
+    seed = 286,
+    n_grow_iter = 1,
+    scale = c(.8,.9),
+    angle = c(-10,10,20),
+    split = 3,
+    init_location = "random") %>% 
+  create_leaf_pile() %>% 
+  plot_leaves()
+
+filename <- here::here("results","n_grow_iter_1.png")
+ggsave(filename)
+
+list(nleaves = 1,
+    ndistinct = 1,
+    seed = 286,
+    n_grow_iter = 12,
+    scale = c(.8,.9),
+    angle = c(-10,10,20),
+    split = 3,
+    init_location = "random") %>% 
+  create_leaf_pile() %>% 
+  plot_leaves()
+
+filename <- here::here("results","n_grow_iter_12.png")
+ggsave(filename)
+
+```
+
+## Change the scale 
+
+The scale is responsible for the length of each successive branch after splitting. 
+
+Values close to 1 seem to create the most realistic looking trees
+
+Varried
+
+```{r}
+list(nleaves = 1,
+    ndistinct = 1,
+    seed = 286,
+    n_grow_iter = 6,
+    scale = c(.4,.5),
+    angle = c(-10,10,20),
+    split = 3,
+    init_location = "random") %>% 
+  create_leaf_pile() %>% 
+  plot_leaves()
+
+filename <- here::here("results","scale_low.png")
+ggsave(filename)
+```
+

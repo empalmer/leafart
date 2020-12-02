@@ -1,5 +1,14 @@
 
 
+#' Rake leaves - Convert leaf to tidy data format
+#'
+#' The data format needed to grow the leaf using purrr's accumulate is not conducive to plotting the leaves, this function cleans up the data so it is more easily plotted
+#'
+#' @param leaf The data frame that stores the generated leaf
+#'
+#' @return A data frame representation that is easier to be passed to ggplot to plot, with an x and y column
+#' @export
+#'
 rake_leaves <- function(leaf) {
   leaf <- leaf %>%
     dplyr::bind_rows() %>%
@@ -11,8 +20,7 @@ rake_leaves <- function(leaf) {
     ) %>%
     tidyr::separate(col = id_step, into = c("axis", "id_step")) %>%
     tidyr::pivot_wider(names_from = axis, values_from = coord) %>%
-    dplyr::select(x,y) %>%
-    dplyr::mutate(color = sample(1:6,1))
+    dplyr::select(x,y)
   return(leaf)
 }
 

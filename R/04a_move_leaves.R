@@ -1,23 +1,36 @@
 
 
-# Rotate around the origin (before leafs are moved )
+#' Rotate leaves grown from the origin
+#'
+#' Since the timing of this method is slower than randomly placing leaves, it is discouraged to use this function
+#'
+#' @param leaf A single leaf grown from the origin
+#'
+#' @return A single leaf that is randomly rotated around the origin
+#' @export
+#'
 rotate_leaf <- function(leaf){
   rot_angle <- sample(-180:180,1)
 
   leaf <- leaf %>%
     mutate(xnew = x * cos(radians(rot_angle)) - y * sin(radians(rot_angle)),
            ynew = x * sin(radians(rot_angle)) + y * cos(radians(rot_angle))) %>%
-    select(xnew,ynew,color,leaf_id) %>%
+    select(xnew,ynew,leaf_id) %>%
     rename(x = xnew, y = ynew)
-
-    #dplyr::rename(x = xnew, coord_y = y) %>%
-    #dplyr::select(
-    #  coord_x, coord_y, seg_deg, seg_len, seg_col, seg_wid,
-    #  iter_n, id_path, id_step
-    #)
   return(leaf)
 }
 
+
+
+#' Randomly place a leaf
+#'
+#' Since the timing of this method is slower than randomly placing leaves, it is discouraged to use this function
+#'
+#' @param leaf A single leaf grown from the origin
+#'
+#' @return A single leaf randomly placed
+#' @export
+#'
 place_leaf <- function(leaf){
   x_loc <- sample(1:50,1)
   y_loc <- sample(1:50,1)
