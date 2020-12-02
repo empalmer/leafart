@@ -3,6 +3,10 @@
 #'
 #' Plots leaves using ggplot2, with `geom_path()` connecting each of the growth steps in order to grow leaf/tree objects
 #'
+#' Another good palette is c("#686724","#CD8E27","#C65729","#993327","#592821","#DBA72E")
+#'
+#' c( "#997C67", "#755330","#B0703C", "#DBA72E", "#E3CCA1","#D1CEC5")
+#'
 #' @param leaves A list containing
 #' @param pal A color palette for the leaves
 #'
@@ -10,8 +14,8 @@
 #' @export
 #'
 
-plot_leaves <- function(leaves, pal = c( "#997C67", "#755330","#B0703C",
-                                         "#DBA72E", "#E3CCA1","#D1CEC5")){
+
+plot_leaves <- function(leaves, pal = c("#686724","#CD8E27","#C65729","#993327","#592821","#DBA72E")){
   # Add a color variable
   leaves <- leaves %>%
     group_by(leaf_id) %>%
