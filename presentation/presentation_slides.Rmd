@@ -12,6 +12,7 @@ library(tidyverse)
 devtools::load_all()
 ```
 
+
 ## Motivation
 
  - Create generative art 
@@ -79,11 +80,12 @@ knitr::include_graphics(here::here("results","high_split.png"))
 knitr::include_graphics(here::here("results","unbalanced_angle.png"))
 ```
 
-## Using generated trees to create leaf art | Emily Palmer
+## Using generated trees to create leaf art | Emily Palmer { .smaller }
+
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","ginkgo_plot_colors.png"))
+```
 
 https://github.com/ST541-Fall2020/empalmer-project-leafart
 https://emilypalmer.shinyapps.io/empalmer-project-leafart/
-
-```{r, echo = FALSE,  out.width="90%"}
-knitr::include_graphics(here::here("results","default_ginkgo_plot.png"))
-```

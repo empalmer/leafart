@@ -14,12 +14,12 @@ devtools::load_all()
 ## Parameters that work for ginkgo leaves
 
 ```{r}
-get_ginkgo_params(nleaves = 250) %>% 
+get_ginkgo_params(nleaves = 150) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 
 
-filename <- here::here("results","ginkgo_plot250.png")
+filename <- here::here("results","ginkgo_plot_colors.png")
 ggsave(filename)
 ```
 

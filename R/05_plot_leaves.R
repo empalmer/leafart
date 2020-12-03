@@ -14,8 +14,8 @@
 #' @export
 #'
 
-
-plot_leaves <- function(leaves, pal = c("#686724","#CD8E27","#C65729","#993327","#592821","#DBA72E")){
+# remove #686724
+plot_leaves <- function(leaves, pal = c("#CD8E27","#C65729","#993327","#592821","#DBA72E","#D28F33")){
 
 
   # Are we plotting multiple leaves?
@@ -29,7 +29,7 @@ plot_leaves <- function(leaves, pal = c("#686724","#CD8E27","#C65729","#993327",
     p <- ggplot(leaves,aes(x = x,y= y,
                            group= leaf_id,
                            color = factor(color))) +
-      geom_path() +
+      geom_path(size = 1.1) +
       theme_void() +
       theme(legend.position = "none",
             plot.background = element_rect(fill = "gray74")) +
