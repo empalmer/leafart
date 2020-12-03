@@ -20,13 +20,13 @@ devtools::load_all()
  
 ----
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 get_ginkgo_params(nleaves = 100) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 ```
 
-```{r, echo = FALSE,  out.width="100%"}
+```{r, echo = FALSE,  out.width="80%"}
 knitr::include_graphics(here::here("results","ginkgo_plot_many_leaves.png"))
 ```
 
