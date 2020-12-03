@@ -20,4 +20,5 @@ Imports:
     dplyr,
     tidyr,
     ggplot2,
-    magrittr
+    magrittr,
+    devtools

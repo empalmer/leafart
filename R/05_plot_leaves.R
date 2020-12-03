@@ -16,14 +16,16 @@
 
 
 plot_leaves <- function(leaves, pal = c("#686724","#CD8E27","#C65729","#993327","#592821","#DBA72E")){
-  # Add a color variable
-  leaves <- leaves %>%
-    group_by(leaf_id) %>%
-    mutate(color = sample(1:length(pal),1))
+
 
   # Are we plotting multiple leaves?
-  n_colors <- length(unique(leaves$color))
-  if("leaf_id" %in% colnames(leaves) & n_colors > 1){
+  #n_colors <- length(unique(leaves$color))
+  #if("leaf_id" %in% colnames(leaves) & n_colors > 1){
+  if("leaf_id" %in% colnames(leaves)){
+    # Add a color variable
+    leaves <- leaves %>%
+      group_by(leaf_id) %>%
+      mutate(color = sample(1:length(pal),1))
     p <- ggplot(leaves,aes(x = x,y= y,
                            group= leaf_id,
                            color = factor(color))) +

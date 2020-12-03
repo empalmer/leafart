@@ -8,7 +8,13 @@
 #
 
 library(shiny)
-library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+library(tibble)
+library(tidyr)
+library(purrr)
+#library(leafart)
 devtools::load_all()
 
 # Define UI for application that draws a histogram
