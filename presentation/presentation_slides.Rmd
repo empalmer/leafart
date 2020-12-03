@@ -12,29 +12,13 @@ library(tidyverse)
 devtools::load_all()
 ```
 
+## Motivation
 
-## Creating the Trees {.smaller .columns-2}
-
-Trees are grown in layers, containing multiple branches. At the end of each branch, the next layer will split off into new branches
-
-The shape of the tree depends on parameters
-
-- Number of layers 
-- Angle to branch off 
-- Scale for length of new branch
-
-```{r,echo = FALSE,  out.width="100%"}
-knitr::include_graphics(here::here("results","leaf_explanation.png"))
-```
-
-
-
-## The choice of parameter matters 
-Explore parameter choices using Shiny: 
-
----- 
-
-Repeat many times and place and rotate randomly to create fallen leaves
+ - Create generative art 
+ - Can I make forest landscapes?
+ - A bunch of little trees don't look like trees
+ 
+----
 
 ```{r, eval = FALSE}
 get_ginkgo_params(nleaves = 100) %>% 
@@ -43,13 +27,63 @@ get_ginkgo_params(nleaves = 100) %>%
 ```
 
 ```{r, echo = FALSE,  out.width="100%"}
-knitr::include_graphics(here::here("results","default_ginkgo_plot.png"))
+knitr::include_graphics(here::here("results","ginkgo_plot_many_leaves.png"))
 ```
 
 
-## Using generated trees to create leaf art
+## Creating the Trees  {.smaller .columns-2}
 
-Emily Palmer
- - https://github.com/ST541-Fall2020/empalmer-project-leafart
- - Shiny link
- - Emily Palmer
+```{r,echo = FALSE,  out.width="200%"}
+knitr::include_graphics(here::here("results","leaf_explanation.png"))
+```
+
+The shape of the tree depends on parameters
+
+- Number of layers 
+- Number of new branches at each layer
+- Angle to branch off 
+- Scale for length of new branch
+
+Trees are grown in layers, containing multiple branches. At the end of each branch, the next layer will split off into new branches
+
+
+
+Repeat many times and place and rotate randomly to create fallen leaves
+
+## The choice of parameter matters { .smaller .columns-2}
+
+[Shiny app to explore](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","scale_high.png"))
+```
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","scale_low.png"))
+```
+
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","extreme_unbalanced_angle.png"))
+```
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","n_grow_iter_12.png"))
+```
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","high_split.png"))
+```
+
+```{r, echo = FALSE,  out.width="50%"}
+knitr::include_graphics(here::here("results","unbalanced_angle.png"))
+```
+
+## Using generated trees to create leaf art | Emily Palmer
+
+https://github.com/ST541-Fall2020/empalmer-project-leafart
+https://emilypalmer.shinyapps.io/empalmer-project-leafart/
+
+```{r, echo = FALSE,  out.width="90%"}
+knitr::include_graphics(here::here("results","default_ginkgo_plot.png"))
+```
