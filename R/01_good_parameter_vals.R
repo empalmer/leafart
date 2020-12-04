@@ -29,19 +29,29 @@ get_ginkgo_params <- function(nleaves = 25){
   return(params)
 }
 
-# maybe add a randomness to the scale and angle for a range of values that make it look good?
-get_params <- function(nleaves = 10,
-                              ndistinct = 6,
-                              init_location = "random"){
+
+#' Create a parameter list
+#'
+#' @param nleaves
+#' @param n_layer
+#' @param scale
+#' @param angle
+#' @param split
+#'
+#' @return
+#' @export
+#'
+get_params <- function(nleaves = 1,
+                       n_layer = 3,
+                       scale = c(.8,.9),
+                       angle = c(-30,10,20),
+                       split = 3){
   params <- list(
     nleaves = nleaves,
-    ndistinct = ndistinct,
-    seed = 286,
-    n_layer = 3,
-    scale = c(.4,.5,.9),
-    angle = c(-30,10,20),
-    split = 1,
-    init_location = init_location
+    n_layer = n_layer,
+    scale = scale,
+    angle = angle,
+    split = split
   )
   return(params)
 }

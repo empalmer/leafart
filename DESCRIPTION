@@ -22,3 +22,7 @@ Imports:
     ggplot2,
     magrittr,
     devtools
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

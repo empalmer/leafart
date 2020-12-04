@@ -1,15 +1,14 @@
 # Fall leaf art based on genearted trees
 
-This package uses the process of creating generated trees in order to produce pretty leaf pictures with ggplot.
+This package uses the process of creating generated trees in order to produce pretty leaf pictures. Note the tidyverse must be installed to use this package. 
 
 ![Ginkgo plot](/images/default_ginkgo_plot.png)
 
 ### Helpful links 
 
 [Presentation slides](/presentation/presentation_slides.html)
-
 [Shiny app](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
-
+[Project report as a vignette](insert link here)
 
 ### How the plots are created 
 
@@ -36,7 +35,7 @@ The shiny app can be accessed here: and allows the user to examine how different
 ### Included in this project
 
 - The R folder contains functions I have coded for this project
-- The results folder contains images of plots I have created throughout this project
-- The leafart folder contains the Shiny app that showcases how different parameters shape the leaves
-- The topic_exploration folder contains work I've done to understand the existing state of generative art packages in R that might be relevant. 
+- The images folder contains images of plots I have created throughout this project
+- The shiny app is in the top level due to some publishing troubles, so the app.R file and the rsconnect file are a result of that. 
+- The topic_exploration folder contains work I've done to understand the existing state of generative art packages in R that might be relevant. Note the .Rmd files are not intended to be re-run, more of a insight of my thought process in developing the project. 
 
