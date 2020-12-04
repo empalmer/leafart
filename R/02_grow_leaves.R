@@ -48,8 +48,12 @@ one_branch <- function(partial_leaf, param, n_grow_iter) {
 #'
 
 grow_leaf_layers <- function(leaf, param, n_grow_iter) {
+  # Add randomness into the split parameter
+  splits <- ifelse(length(param$split) == 1,
+                   param$split,
+                   sample(param$split,1))
   leaf_growth <- purrr::map_dfr(
-    .x = 1:param$split,
+    .x = 1:splits,
     .f = one_branch,
     partial_leaf = leaf,
     param = param
@@ -70,14 +74,15 @@ grow_leaf_layers <- function(leaf, param, n_grow_iter) {
 #'
 #' @param param A list of parameter values that give the leaves their
 #' shape
+#' @param init_location A character of either "random" or "origin"
 #'
 #' @return
 #' @export
 #'
 
-grow_leaf <- function(param) {
+grow_leaf <- function(param, init_location = "random") {
   # initialize at a random location or at origin
-  if(param$init_location == "random"){
+  if(init_location == "random"){
     x_0 <- sample(1:50,1)
     y_0 <- sample(1:50,1)
     init_angle <- sample(-180:180,1)
@@ -88,20 +93,12 @@ grow_leaf <- function(param) {
   }
 
   initial_leaf <- tibble::tibble(
-    # All leafs have a zero location to initialize.
-    #x_0 = 0,
-    #y_0 = 0,
     x_0 = x_0,
     y_0 = y_0,
-
     x_1 = x_0 + cos(radians(init_angle)),
     y_1 = y_0 + sin(radians(init_angle)),
-
-    # Default to vertical
-    #angle = pi,
-    #angle = 90,
     angle = init_angle,
-    length = 1L,       # initial segment length is 1
+    length = 1L,
     iter_n = 1L
   )
 

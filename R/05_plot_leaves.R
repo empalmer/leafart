@@ -16,8 +16,6 @@
 
 # remove #686724
 plot_leaves <- function(leaves, pal = c("#CD8E27","#C65729","#993327","#592821","#DBA72E","#D28F33")){
-
-
   # Are we plotting multiple leaves?
   #n_colors <- length(unique(leaves$color))
   #if("leaf_id" %in% colnames(leaves) & n_colors > 1){

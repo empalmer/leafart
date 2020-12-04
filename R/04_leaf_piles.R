@@ -26,15 +26,16 @@ create_leaf_pile <- function(param){
 #' This method was intended to spead up the process of generating trees. This method creates a smaller number of distinct trees (since they look similar in the end), and then randomly replicates those trees, and then randomly rotates and places them. It ends up being slower in the end
 #'
 #' @param param A list of parameters specifying how to grow the leaf and how many leaves to grow
+#' @param ndistinct The number of distinct trees to create
 #'
 #' @return A data frame containing an x, y, and leaf_id column
 #' @export
 #'
-spread_leaves <- function(param){
+spread_leaves <- function(param, ndistinct = 3){
   nleaves <- param$nleaves
-  ndistinct <- param$ndistinct
   leaf_pile <- map(.x = 1:ndistinct,
-                         .f = ~grow_leaf(param = param) %>%
+                         .f = ~grow_leaf(param = param,
+                                         init_location  = "origin") %>%
                            rake_leaves() %>%
                            mutate(leaf_id = .x)) %>%
     sample(nleaves, replace = T) %>%

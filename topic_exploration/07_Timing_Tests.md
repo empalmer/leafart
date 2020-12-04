@@ -8,9 +8,9 @@ Emily Palmer
 ``` r
 # With default parameters, number of leaves 10, ndistinct 6
 bench::mark(
-  fewer_distinct = {get_ginkgo_params(init_location = "origin") %>% 
+  fewer_distinct = {get_ginkgo_params() %>% 
   spread_leaves() },
-  more_distinct = {get_ginkgo_params(init_location = "random") %>%
+  more_distinct = {get_ginkgo_params() %>%
   grow_leaf() %>% 
   rake_leaves()},
   check = FALSE
@@ -22,14 +22,14 @@ bench::mark(
     ## # A tibble: 2 x 6
     ##   expression          min   median `itr/sec` mem_alloc `gc/sec`
     ##   <bch:expr>     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    ## 1 fewer_distinct    892ms    892ms      1.12     229MB     6.73
-    ## 2 more_distinct     102ms    106ms      9.53      36MB     9.53
+    ## 1 fewer_distinct    638ms    638ms      1.57     121MB     20.4
+    ## 2 more_distinct     106ms    124ms      6.79      36MB     15.3
 
 ``` r
 bench::mark(
-  fewer_distinct = {get_ginkgo_params(init_location = "origin", nleaves = 50, ndistinct = 3) %>% 
-  spread_leaves() },
-  more_distinct = {get_ginkgo_params(init_location = "random",nleaves = 50) %>%
+  fewer_distinct = {get_ginkgo_params(nleaves = 50) %>% 
+  spread_leaves(ndistinct = 3) },
+  more_distinct = {get_ginkgo_params(nleaves = 50) %>%
   grow_leaf() %>% 
   rake_leaves()},
   check = FALSE
@@ -41,8 +41,8 @@ bench::mark(
     ## # A tibble: 2 x 6
     ##   expression          min   median `itr/sec` mem_alloc `gc/sec`
     ##   <bch:expr>     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    ## 1 fewer_distinct    1.13s    1.13s     0.888     117MB     7.11
-    ## 2 more_distinct  100.97ms 105.96ms     9.29       36MB     5.58
+    ## 1 fewer_distinct    1.05s    1.05s     0.950     117MB    13.3 
+    ## 2 more_distinct  110.51ms 115.34ms     7.36       36MB     9.20
 
 We have two methods to create a scatter of leaves. The first, randomly
 places the leaves, and has to create more distinct leaves. The second
