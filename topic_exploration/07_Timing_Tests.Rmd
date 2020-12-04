@@ -28,9 +28,9 @@ bench::mark(
 
 
 bench::mark(
-  fewer_distinct = {get_gingko_params(init_location = "origin", nleaves = 50, ndistinct = 3) %>% 
+  fewer_distinct = {get_ginkgo_params(init_location = "origin", nleaves = 50, ndistinct = 3) %>% 
   spread_leaves() },
-  more_distinct = {get_gingko_params(init_location = "random",nleaves = 50) %>%
+  more_distinct = {get_ginkgo_params(init_location = "random",nleaves = 50) %>%
   grow_leaf() %>% 
   rake_leaves()},
   check = FALSE
