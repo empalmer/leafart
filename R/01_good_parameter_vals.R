@@ -2,7 +2,7 @@
 #'
 #' Output parameters:
 #' - seed: set.seed() for reproducibility
-#' - n_grow_iter: number of times to grow a layer - how 'full' a leaf is
+#' - n_layer: number of times to grow a layer - how 'full' a leaf is
 #' - scale : A vector of possible re-scaling for the length of each layer
 #' - angle : A vector of possible angles for new branches to go
 #' - split : The number of new branches at each branching point
@@ -21,7 +21,7 @@
 get_ginkgo_params <- function(nleaves = 25){
   params <- list(
     nleaves = nleaves,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 3
@@ -37,7 +37,7 @@ get_params <- function(nleaves = 10,
     nleaves = nleaves,
     ndistinct = ndistinct,
     seed = 286,
-    n_grow_iter = 3,
+    n_layer = 3,
     scale = c(.4,.5,.9),
     angle = c(-30,10,20),
     split = 1,

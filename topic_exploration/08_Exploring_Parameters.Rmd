@@ -25,31 +25,31 @@ get_ginkgo_params(nleaves = 150) %>%
 
 
 
-## Change n_grow_iter
+## Change n_layer
 
 The number of "layers" the leaf has 
 
 ```{r}
 list(nleaves = 1,
-    n_grow_iter = 1,
+    n_layer = 1,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 3) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 
-#filename <- here::here("images","n_grow_iter_1.png")
+#filename <- here::here("images","n_layer_1.png")
 #ggsave(filename)
 
 list(nleaves = 1,
-    n_grow_iter = 12,
+    n_layer = 12,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 3,) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 
-#filename <- here::here("images","n_grow_iter_12.png")
+#filename <- here::here("images","n_layer_12.png")
 #ggsave(filename)
 
 ```
@@ -64,7 +64,7 @@ Varried
 
 ```{r}
 list(nleaves = 1,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.4,.5),
     angle = c(-10,10,20),
     split = 3) %>% 
@@ -75,7 +75,7 @@ list(nleaves = 1,
 #ggsave(filename)
 
 list(nleaves = 1,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(3,4),
     angle = c(-10,10,20),
     split = 3,) %>% 
@@ -90,7 +90,7 @@ list(nleaves = 1,
 
 ```{r}
 list(nleaves = 1,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
     split = 5) %>% 
@@ -104,7 +104,7 @@ list(nleaves = 1,
 ## Angle 
 ```{r}
 list(nleaves = 1,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.8,.9),
     angle = c(-90,0),
     split = 3) %>% 
@@ -117,19 +117,18 @@ list(nleaves = 1,
 
 list(nleaves = 1,
     seed = 286,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.8,.9),
     angle = seq(-50,10,1),
     split = 3) %>% 
   create_leaf_pile() %>% 
-  plot_leaves()
 
 #filename <- here::here("images","unbalanced_angle.png")
 #ggsave(filename)
 
 list(nleaves = 1,
     seed = 286,
-    n_grow_iter = 6,
+    n_layer = 6,
     scale = c(.8,.9),
     angle = seq(-60,60,1),
     split = 3) %>% 

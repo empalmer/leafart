@@ -55,7 +55,7 @@ ui <- fluidPage(
                 max = 20
             ),
             numericInput(
-                "n_grow_iter",
+                "n_layer",
                 "Enter the number layers to grow",
                 value = 6,
                 min = 1,
@@ -75,13 +75,10 @@ server <- function(input, output) {
 
     output$leafplot <- renderPlot({
         list(nleaves = input$nleaves,
-             ndistinct = 1,
-             seed = 286,
-             n_grow_iter = input$n_grow_iter,
+             n_layer = input$n_layer,
              scale = as.numeric(input$scale),
              angle = as.numeric(input$angle),
-             split = input$split,
-             init_location = "random") %>%
+             split = input$split) %>%
             create_leaf_pile() %>%
             plot_leaves()
 

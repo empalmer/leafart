@@ -7,12 +7,12 @@
 #'
 #' @param partial_leaf The leaf in progress of being grown
 #' @param param The parameters specifying how to grow the leaf
-#' @param n_grow_iter Keeps track of the growth
+#' @param n_layer Keeps track of the growth
 #'
 #' @return The leaf with the new growth of splits
 #' @export
 #'
-one_branch <- function(partial_leaf, param, n_grow_iter) {
+one_branch <- function(partial_leaf, param, n_layer) {
   n_shoots <- nrow(partial_leaf)
   scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
   angle_adjust <- sample(x = param$angle, size = n_shoots, replace = TRUE)
@@ -41,13 +41,13 @@ one_branch <- function(partial_leaf, param, n_grow_iter) {
 #'
 #' @param leaf The leaf in process of being grown
 #' @param param The parameters specifying how to grow the leaf
-#' @param n_grow_iter Keeps track of the growth
+#' @param n_layer Keeps track of the growth
 #'
 #' @return The leaf with a newly grown layer
 #' @export
 #'
 
-grow_leaf_layers <- function(leaf, param, n_grow_iter) {
+grow_leaf_layers <- function(leaf, param, n_layer) {
   # Add randomness into the split parameter
   splits <- ifelse(length(param$split) == 1,
                    param$split,
@@ -103,7 +103,7 @@ grow_leaf <- function(param, init_location = "random") {
   )
 
   full_leaf <- purrr::accumulate(
-    .x = 1:param$n_grow_iter,
+    .x = 1:param$n_layer,
     .f = grow_leaf_layers,
     .init = initial_leaf,
     param = param
