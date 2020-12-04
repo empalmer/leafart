@@ -12,7 +12,7 @@
 rake_leaves <- function(leaf) {
   leaf <- leaf %>%
     dplyr::bind_rows() %>% # Combine lists into one data frame
-    dplyr::mutate(id_path = as.integer(1:dplyr::n())) %>%
+    dplyr::mutate(step = as.integer(1:dplyr::n())) %>%
     tidyr::pivot_longer(
       cols = x_0:y_1,
       names_to = "id_step",
@@ -20,7 +20,7 @@ rake_leaves <- function(leaf) {
     ) %>%
     tidyr::separate(col = id_step, into = c("axis", "id_step")) %>%
     tidyr::pivot_wider(names_from = axis, values_from = coord) %>%
-    dplyr::select(x,y)
+    dplyr::select(x,y,step)
   return(leaf)
 }
 
