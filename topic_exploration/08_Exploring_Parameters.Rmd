@@ -19,7 +19,7 @@ get_ginkgo_params(nleaves = 150) %>%
   plot_leaves()
 
 
-filename <- here::here("results","ginkgo_plot_colors.png")
+filename <- here::here("images","ginkgo_plot_colors.png")
 ggsave(filename)
 ```
 
@@ -41,7 +41,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","n_grow_iter_1.png")
+filename <- here::here("images","n_grow_iter_1.png")
 ggsave(filename)
 
 list(nleaves = 1,
@@ -55,7 +55,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","n_grow_iter_12.png")
+filename <- here::here("images","n_grow_iter_12.png")
 ggsave(filename)
 
 ```
@@ -80,7 +80,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","scale_low.png")
+filename <- here::here("images","scale_low.png")
 ggsave(filename)
 
 list(nleaves = 1,
@@ -94,7 +94,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","scale_high.png")
+filename <- here::here("images","scale_high.png")
 ggsave(filename)
 ```
 
@@ -112,7 +112,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","high_split.png")
+filename <- here::here("images","high_split.png")
 ggsave(filename)
 ```
 
@@ -129,7 +129,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","extreme_unbalanced_angle.png")
+filename <- here::here("images","extreme_unbalanced_angle.png")
 ggsave(filename)
 
 
@@ -144,7 +144,7 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","unbalanced_angle.png")
+filename <- here::here("images","unbalanced_angle.png")
 ggsave(filename)
 
 list(nleaves = 1,
@@ -158,6 +158,6 @@ list(nleaves = 1,
   create_leaf_pile() %>% 
   plot_leaves()
 
-filename <- here::here("results","unbalanced_angle.png")
+filename <- here::here("images","unbalanced_angle.png")
 ggsave(filename)
 ```
