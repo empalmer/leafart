@@ -8,7 +8,7 @@ This package uses the process of creating generated trees in order to produce pr
 
 [Presentation slides](/presentation/presentation_slides.html)
 [Shiny app](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
-[Project report as a vignette](insert link here)
+[Project report as a vignette](doc/my-vignette.pdf)
 
 ### How the plots are created 
 
