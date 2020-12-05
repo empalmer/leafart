@@ -24,5 +24,6 @@ Imports:
     devtools
 Suggests: 
     knitr,
+    tibble,
     rmarkdown
 VignetteBuilder: knitr

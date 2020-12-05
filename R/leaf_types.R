@@ -1,13 +1,6 @@
 
-# param <- list(nleaves = 1,
-#      ndistinct = 1,
-#      seed = 286,
-#      n_grow_iter = 6,
-#      scale = c(.4,.5),
-#      angle = c(-10,10),
-#      split = 2,
-#      init_location = "random")
-#
+#param <- get_params()
+
 # init_angle = 90
 # (initialize <- tibble(
 #   # Choose a random first location, smaller selection for leafs falling

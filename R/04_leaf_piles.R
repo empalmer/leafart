@@ -10,10 +10,10 @@
 #'
 create_leaf_pile <- function(param){
   nleaves <- param$nleaves
-  map_dfr(.x = 1:nleaves,
+  purrr::map_dfr(.x = 1:nleaves,
           .f = ~grow_leaf(param = param) %>%
             rake_leaves() %>%
-            mutate(leaf_id = .x))
+            dplyr::mutate(leaf_id = .x))
 }
 
 

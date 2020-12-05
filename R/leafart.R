@@ -6,6 +6,7 @@
 #' @name leafart
 #'
 #'
-#' @importFrom ggplot2 ggplot geom_path theme_void theme scale_color_manual element_rect
-#'
+#' @importFrom ggplot2 ggplot geom_path theme_void theme scale_color_manual
+#' @importFrom ggplot2 element_rect aes
+#' @importFrom dplyr mutate
 NULL
