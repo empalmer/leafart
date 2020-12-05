@@ -34,5 +34,4 @@ vignettes/*.pdf
 #inst/doc
 #doc
 Meta
-doc
-
+rsconnect
