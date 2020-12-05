@@ -32,6 +32,5 @@ vignettes/*.pdf
 .Rbuildignore
 .DS_Store
 #inst/doc
-#doc
 Meta
 rsconnect

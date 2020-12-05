@@ -9,6 +9,7 @@ knitr::opts_chunk$set(
 library(tibble)
 library(leafart) 
 # To actually show the knitted vignette document, I had to use devtools::build_vignettes() and then remove the doc file from the .gitignore. 
+# also using pdf_document instead of html_vignette
 
 ## -----------------------------------------------------------------------------
 get_params(nleaves = 1,

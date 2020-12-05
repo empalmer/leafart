@@ -1,8 +1,8 @@
 ---
 title: "Project Report (vignette)"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
-  %\VignetteIndexEntry{report-vignette}
+  %\VignetteIndexEntry{project-report-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 library(tibble)
 library(leafart) 
 # To actually show the knitted vignette document, I had to use devtools::build_vignettes() and then remove the doc file from the .gitignore. 
+# also using pdf_document instead of html_vignette
 ```
 
 

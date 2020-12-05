@@ -10,7 +10,7 @@ This package uses the process of creating generated trees in order to produce pr
 
 [Shiny app](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
 
-[Project report as a vignette](/doc/project-report-vignette.html)
+[Project report as a vignette](/doc/project-report-vignette.pdf)
 
 ### How the plots are created 
 
@@ -30,14 +30,12 @@ get_ginkgo_params() %>%
   plot_leaves()
 ```
 
-### Shiny app
-
-The shiny app can be accessed here: and allows the user to examine how different parameter values change the 
 
 ### Included in this project
 
 - The R folder contains functions I have coded for this project
 - The images folder contains images of plots I have created throughout this project
-- The shiny app is in the top level due to some publishing troubles, so the app.R file and the rsconnect file are a result of that. 
+- The shiny app is in the top level due to some publishing troubles, so the app.R file is a result of that. 
 - The topic_exploration folder contains work I've done to understand the existing state of generative art packages in R that might be relevant. Note the .Rmd files are not intended to be re-run, more of a insight of my thought process in developing the project. 
+- The doc folder contains the knitted results of the vignette use as the report for this project
 
