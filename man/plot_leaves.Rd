@@ -6,7 +6,8 @@
 \usage{
 plot_leaves(
   leaves,
-  pal = c("#997C67", "#755330", "#B0703C", "#DBA72E", "#E3CCA1", "#D1CEC5")
+  connect = FALSE,
+  pal = c("#CD8E27", "#C65729", "#993327", "#592821", "#DBA72E", "#D28F33")
 )
 }
 \arguments{
@@ -19,4 +20,9 @@ A ggplot object
 }
 \description{
 Plots leaves using ggplot2, with \code{geom_path()} connecting each of the growth steps in order to grow leaf/tree objects
+}
+\details{
+Another good palette is c("#686724","#CD8E27","#C65729","#993327","#592821","#DBA72E")
+
+c( "#997C67", "#755330","#B0703C", "#DBA72E", "#E3CCA1","#D1CEC5")
 }

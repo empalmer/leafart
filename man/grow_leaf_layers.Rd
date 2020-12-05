@@ -4,14 +4,14 @@
 \alias{grow_leaf_layers}
 \title{Grow one layer of the leaf}
 \usage{
-grow_leaf_layers(leaf, param, n_grow_iter)
+grow_leaf_layers(leaf, param, n_layer)
 }
 \arguments{
 \item{leaf}{The leaf in process of being grown}
 
 \item{param}{The parameters specifying how to grow the leaf}
 
-\item{n_grow_iter}{Keeps track of the growth}
+\item{n_layer}{Keeps track of the growth}
 }
 \value{
 The leaf with a newly grown layer

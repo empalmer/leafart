@@ -4,16 +4,10 @@
 \alias{get_ginkgo_params}
 \title{Get default parameters for making ginkgo leaves}
 \usage{
-get_ginkgo_params(nleaves = 10, ndistinct = 6, init_location = "random")
+get_ginkgo_params(nleaves = 25)
 }
 \arguments{
 \item{nleaves}{The number of leafs to create, defaults to 10}
-
-\item{ndistinct}{The number of distinct leaves to create, if using the \code{spread_leaves()} function}
-
-\item{init_location}{One of "random" or "origin" Are leaves grown at the origin or grown and rotated randomly?}
-
-\item{color_palette}{A color palette for plotting the leaves, defaults to a fall aesthetic}
 }
 \value{
 A list of parameter values that make the leaves look like ginkgo
@@ -23,7 +17,7 @@ leaves.
 Output parameters:
 \itemize{
 \item seed: set.seed() for reproducibility
-\item n_grow_iter: number of times to grow a layer - how 'full' a leaf is
+\item n_layer: number of times to grow a layer - how 'full' a leaf is
 \item scale : A vector of possible re-scaling for the length of each layer
 \item angle : A vector of possible angles for new branches to go
 \item split : The number of new branches at each branching point

@@ -4,14 +4,14 @@
 \alias{one_branch}
 \title{Split the end of a branch}
 \usage{
-one_branch(partial_leaf, param, n_grow_iter)
+one_branch(partial_leaf, param, n_layer)
 }
 \arguments{
 \item{partial_leaf}{The leaf in progress of being grown}
 
 \item{param}{The parameters specifying how to grow the leaf}
 
-\item{n_grow_iter}{Keeps track of the growth}
+\item{n_layer}{Keeps track of the growth}
 }
 \value{
 The leaf with the new growth of splits

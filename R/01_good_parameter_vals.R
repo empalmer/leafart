@@ -8,10 +8,6 @@
 #' - split : The number of new branches at each branching point
 #'
 #' @param nleaves The number of leafs to create, defaults to 10
-#' @param ndistinct The number (at most) of distinct leaves to create, if using the `spread_leaves()` function
-#' @param init_location One of "random" or "origin" Are leaves grown at the origin or grown and rotated randomly?
-#' @param color_palette A color palette for plotting the leaves, defaults to a fall aesthetic
-#'
 #'
 #' @return A list of parameter values that make the leaves look like ginkgo
 #' leaves.
@@ -32,11 +28,11 @@ get_ginkgo_params <- function(nleaves = 25){
 
 #' Create a parameter list
 #'
-#' @param nleaves
-#' @param n_layer
-#' @param scale
-#' @param angle
-#' @param split
+#' @param nleaves The number of leaves to generate
+#' @param n_layer How many layers to grow
+#' @param scale A single value or vector of scaling length options
+#' @param angle A single value or vector of angles to split from
+#' @param split A single value or vector of the number of splits at each branch
 #'
 #' @return
 #' @export

@@ -13,10 +13,10 @@ rotate_leaf <- function(leaf){
   rot_angle <- sample(-180:180,1)
 
   leaf <- leaf %>%
-    mutate(xnew = x * cos(radians(rot_angle)) - y * sin(radians(rot_angle)),
+    dplyr::mutate(xnew = x * cos(radians(rot_angle)) - y * sin(radians(rot_angle)),
            ynew = x * sin(radians(rot_angle)) + y * cos(radians(rot_angle))) %>%
-    select(xnew,ynew,leaf_id) %>%
-    rename(x = xnew, y = ynew)
+    dplyr::select(xnew,ynew,leaf_id) %>%
+    dplyr::rename(x = xnew, y = ynew)
   return(leaf)
 }
 

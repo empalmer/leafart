@@ -13,6 +13,7 @@
 #' @return A ggplot object
 #' @export
 #'
+#'
 
 # remove #686724
 plot_leaves <- function(leaves,
@@ -24,9 +25,9 @@ plot_leaves <- function(leaves,
   if("leaf_id" %in% colnames(leaves)){
     # Add a color variable
     leaves <- leaves %>%
-      group_by(leaf_id) %>%
-      mutate(color = sample(1:length(pal),1)) %>%
-      unite("path_group",c("leaf_id","step"))
+      dplyr::group_by(leaf_id) %>%
+      dplyr::mutate(color = sample(1:length(pal),1)) %>%
+      tidyr::unite("path_group",c("leaf_id","step"))
     p <- ggplot(leaves,aes(x = x,y= y,
                            #group= leaf_id,
                            group = path_group,

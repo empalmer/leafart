@@ -33,15 +33,15 @@ create_leaf_pile <- function(param){
 #'
 spread_leaves <- function(param, ndistinct = 3){
   nleaves <- param$nleaves
-  leaf_pile <- map(.x = 1:ndistinct,
+  leaf_pile <- purrr::map(.x = 1:ndistinct,
                          .f = ~grow_leaf(param = param,
                                          init_location  = "origin") %>%
                            rake_leaves() %>%
                            mutate(leaf_id = .x)) %>%
     sample(nleaves, replace = T) %>%
-    map2(1:nleaves, ~ (mutate(.x,leaf_id  = .y))) %>%
-    map(rotate_leaf) %>%
-    map_df(place_leaf)
+    purrr::map2(1:nleaves, ~ (mutate(.x,leaf_id  = .y))) %>%
+    purrr::map(rotate_leaf) %>%
+    purrr::map_df(place_leaf)
 
   return(leaf_pile)
 }

@@ -13,9 +13,10 @@
 #' @export
 #'
 one_branch <- function(partial_leaf, param, n_layer) {
-  n_shoots <- nrow(partial_leaf)
-  scaled_length <- sample(x = param$scale, size = n_shoots, replace = TRUE)
-  angle_adjust <- sample(x = param$angle, size = n_shoots, replace = TRUE)
+  n_new_branches <- nrow(partial_leaf)
+  # Do some check if the size of the angle vector matches the number of new branches
+  scaled_length <- sample(x = param$scale, size = n_new_branches, replace = TRUE)
+  angle_adjust <- sample(x = param$angle, size = n_new_branches, replace = TRUE)
 
   partial_leaf <- partial_leaf %>%
     dplyr::mutate(
@@ -89,6 +90,10 @@ grow_leaf <- function(param, init_location = "random") {
   } else{
     x_0 <- 0
     y_0 <- 0
+    init_angle <- 90
+  }
+  # make tree vertical if there is only one
+  if(param$nleaves ==1){
     init_angle <- 90
   }
 

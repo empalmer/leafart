@@ -4,11 +4,13 @@
 \alias{grow_leaf}
 \title{Grow ONE leaf}
 \usage{
-grow_leaf(param)
+grow_leaf(param, init_location = "random")
 }
 \arguments{
 \item{param}{A list of parameter values that give the leaves their
 shape}
+
+\item{init_location}{A character of either "random" or "origin"}
 }
 \value{
 
