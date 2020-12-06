@@ -1,8 +1,8 @@
-
-#param <- get_params()
-
+#
+# param <- get_params()
+#
 # init_angle = 90
-# (initialize <- tibble(
+# (initialize <- tibble::tibble(
 #   # Choose a random first location, smaller selection for leafs falling
 #   x_0 = 0,
 #   y_0 = 0,
@@ -35,7 +35,7 @@
 # }
 #
 # stem_branches <- function(partial_leaf, param,n_grow_iter){
-#   map_dfr(.x = 1:param$split,
+#   purrr::map_dfr(.x = 1:param$split,
 #       .f = mid_branch,
 #       partial_leaf = partial_leaf,
 #       param = param)
@@ -45,7 +45,7 @@
 #
 #
 # (full_leaf <- purrr::accumulate(
-#   .x = 1:6,
+#   .x = 1:2,
 #   .f = stem_branches,
 #   .init = initialize,
 #   param = param
@@ -54,9 +54,6 @@
 #
 #
 # (raked <- rake_leaves(full_leaf))
-#
-# raked %>% distinct()
-#
 # plot_leaves(raked)
 #
-# plot_leaves(distinct(raked))
+# plot_leaves(rake_leaves(multiple_stems))

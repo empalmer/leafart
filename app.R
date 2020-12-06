@@ -26,11 +26,13 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            sliderInput("nleaves",
-                        "Number of leaves:",
-                        min = 1,
-                        max = 50,
-                        value = 20),
+            numericInput(
+                "nleaves",
+                "Number of leaves",
+                value = 1,
+                min = 1,
+                max = 200
+            ),
             selectInput(
                 "scale"
                 , "Enter scale values"
