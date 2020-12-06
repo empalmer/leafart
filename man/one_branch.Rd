@@ -14,7 +14,7 @@ one_branch(partial_leaf, param, n_layer)
 \item{n_layer}{Keeps track of the growth}
 }
 \value{
-The leaf with the new growth of splits
+A one row tibble that represents the new branch
 }
 \description{
 At each endpoint a leaf is growing from, split/branch depending on the parameters

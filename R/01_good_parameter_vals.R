@@ -34,7 +34,7 @@ get_ginkgo_params <- function(n_leaves = 25){
 #' @param angle A single value or vector of angles to split from
 #' @param split A single value or vector of the number of splits at each branch
 #'
-#' @return
+#' @return A list of parameter values
 #' @export
 #'
 get_params <- function(n_leaves = 1,

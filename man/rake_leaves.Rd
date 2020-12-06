@@ -10,7 +10,7 @@ rake_leaves(leaf)
 \item{leaf}{The data frame that stores the generated leaf}
 }
 \value{
-A data frame representation that is easier to be passed to ggplot to plot, with an x and y column
+A data frame representation that is easier to be passed to ggplot to plot, with an x,y and step column
 }
 \description{
 The data format needed to grow the leaf using purrr's accumulate is not conducive to plotting the leaves, this function cleans up the data so it is more easily plotted

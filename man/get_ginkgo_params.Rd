@@ -4,10 +4,10 @@
 \alias{get_ginkgo_params}
 \title{Get default parameters for making ginkgo leaves}
 \usage{
-get_ginkgo_params(nleaves = 25)
+get_ginkgo_params(n_leaves = 25)
 }
 \arguments{
-\item{nleaves}{The number of leafs to create, defaults to 10}
+\item{n_leaves}{The number of leafs to create, defaults to 10}
 }
 \value{
 A list of parameter values that make the leaves look like ginkgo

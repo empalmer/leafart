@@ -5,7 +5,7 @@
 \title{Create a parameter list}
 \usage{
 get_params(
-  nleaves = 1,
+  n_leaves = 1,
   n_layer = 3,
   scale = c(0.8, 0.9),
   angle = c(-30, 10, 20),
@@ -13,7 +13,7 @@ get_params(
 )
 }
 \arguments{
-\item{nleaves}{The number of leaves to generate}
+\item{n_leaves}{The number of leaves to generate}
 
 \item{n_layer}{How many layers to grow}
 
@@ -24,7 +24,7 @@ get_params(
 \item{split}{A single value or vector of the number of splits at each branch}
 }
 \value{
-
+A list of parameter values
 }
 \description{
 Create a parameter list

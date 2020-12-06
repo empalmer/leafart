@@ -14,7 +14,7 @@ grow_leaf_layers(leaf, param, n_layer)
 \item{n_layer}{Keeps track of the growth}
 }
 \value{
-The leaf with a newly grown layer
+A tibble containing the growth at that layer, one row per branch
 }
 \description{
 Leafs grow outward from the stem in layers. At each layer, we branch at each endpoint

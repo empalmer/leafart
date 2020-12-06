@@ -16,7 +16,7 @@ shape}
 
 }
 \description{
-This function is the highest level to create a leaf.
+This function is the highest level to create a single leaf.
 }
 \details{
 It starts with an initial leaf, which is essentially just a stalk. Depending on the parameter values, this is either grown at the origin or a randomly placed location

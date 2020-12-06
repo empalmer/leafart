@@ -6,7 +6,7 @@
 #'
 #' @param leaf The data frame that stores the generated leaf
 #'
-#' @return A data frame representation that is easier to be passed to ggplot to plot, with an x and y column
+#' @return A data frame representation that is easier to be passed to ggplot to plot, with an x,y and step column
 #' @export
 rake_leaves <- function(leaf) {
   leaf <- leaf %>%

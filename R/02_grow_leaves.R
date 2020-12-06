@@ -9,7 +9,7 @@
 #' @param param The parameters specifying how to grow the leaf
 #' @param n_layer Keeps track of the growth
 #'
-#' @return The leaf with the new growth of splits
+#' @return A one row tibble that represents the new branch
 #' @export
 #'
 one_branch <- function(partial_leaf, param, n_layer) {
@@ -44,7 +44,7 @@ one_branch <- function(partial_leaf, param, n_layer) {
 #' @param param The parameters specifying how to grow the leaf
 #' @param n_layer Keeps track of the growth
 #'
-#' @return The leaf with a newly grown layer
+#' @return A tibble containing the growth at that layer, one row per branch
 #' @export
 #'
 
@@ -66,7 +66,7 @@ grow_leaf_layers <- function(leaf, param, n_layer) {
 
 #' Grow ONE leaf
 #'
-#' This function is the highest level to create a leaf.
+#' This function is the highest level to create a single leaf.
 #'
 #' It starts with an initial leaf, which is essentially just a stalk. Depending on the parameter values, this is either grown at the origin or a randomly placed location
 #'
