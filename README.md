@@ -1,4 +1,5 @@
 # Fall leaf art based on genearted trees
+## A package by Emily Palmer
 
 This package uses the process of creating generated trees in order to produce pretty leaf pictures. Note the tidyverse must be installed to use this package. 
 
@@ -6,19 +7,12 @@ This package uses the process of creating generated trees in order to produce pr
 
 ### Helpful links 
 
-[Presentation slides](/presentation/presentation_slides.html)
+[Report](/report/report.pdf)
+
+[Presentation slides](/presentation/presentation_slides.pdf)
 
 [Shiny app](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
 
-[Project report as a vignette](/doc/project-report-vignette.pdf)
-
-### How the plots are created 
-
-The plots are created by making multiple leaves, or trees (Trees look like leaves when we are zoomed out). We build the leaf/tree in layers, earlier layers are smaller. Each layer is composed of a set of branches. To grow the leaf/tree, at the end point of each branch in the layer, several new branches are grown from the endpoint, the number is determined by how many 'splits' there are. These grow off the old branch at a randomly selected angle from the parameter inputs, and the length is randomly scaled from the old branch length. 
-
-![explanation](/images/leaf_explanation.png)
-
-Each new branch is grown with the `one_branch()` function. The `grow_leaf_layers()` function grows one layer, by iterating over all the endpoints of the previous layer, calling `one_branch()` function on each endpoint. The `grow_leaf()` function maps the `grow_leaf_layers()` function to grow 
 
 ### Example code 
 
@@ -30,6 +24,9 @@ get_ginkgo_params() %>%
   plot_leaves()
 ```
 
+
+The plots are created by making multiple leaves, or trees (Trees look like leaves when we are zoomed out). We build the leaf/tree in layers, earlier layers are smaller. Each layer is composed of a set of branches. To grow the leaf/tree, at the end point of each branch in the layer, several new branches are grown from the endpoint, the number is determined by how many 'splits' there are. These grow off the old branch at a randomly selected angle from the parameter inputs, and the length is randomly scaled from the old branch length. 
+To understand the process of how these leaves/trees are created, see the (report)
 
 ### Included in this project
 

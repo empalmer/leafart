@@ -1,10 +1,10 @@
 ---
 title: "Project Report (vignette)"
-output: rmarkdown::pdf_document
-vignette: >
-  %\VignetteIndexEntry{project-report-vignette}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette: default
+  rmarkdown::pdf_document: default
+vignette: |
+  %\VignetteIndexEntry{project-report-vignette} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 #devtools::install()
 library(tibble)
 library(leafart) 
+#devtools::build_vignettes()
 # To actually show the knitted vignette document, I had to use devtools::build_vignettes() and then remove the doc file from the .gitignore. 
 # also using pdf_document instead of html_vignette
 ```
@@ -36,6 +37,11 @@ get_params(nleaves = 1,
 
 ```
 
+## Motivation 
+
+
+
+
 ## Growing a leaf: 
 
 A leaf starts with a stalk. We keep track of the stalk start and endpoint, and then draw a line between them. 
@@ -44,11 +50,8 @@ Here's a stalk:
 
 ```{r}
 (initial_leaf <- tibble::tibble(
-    x_0 = 0,
-    y_0 = 0,
-    x_1 = 0,
-    y_1 = 1
-  ))
+    x_0 = 0, y_0 = 0,
+    x_1 = 0,y_1 = 1))
 ```
 
 This format makes it harder to plot. The function `rake_leaves()` will transform the leaf into something better suited to plotting. The `plot_leaves()` function will plot a leaf after it is "raked"
@@ -107,14 +110,12 @@ small_leaf <- get_params(n_layer = 1,
                      angle = 90,
                      split = 2) %>% 
   grow_leaf()
-
-
 ```
 
 
 And again, we have to clean up the data frame to be easier to plot. We now also have to keep track of which layer the branch belongs to so the graphing knows which points to connect. 
 
-```{r}
+```{r,  out.width="50%"}
 get_params(n_layer = 1,
                      scale = .5,
                      angle = 90,
@@ -134,8 +135,17 @@ get_params(nleaves = 1,
 ```
 
 
-Now we have two layers. We repeat this growing process at the endpoint of each newly grown branch, untill we have fully grown out the tree. 
+Now we have two layers. We repeat this growing process at the endpoint of each newly grown branch, until we have fully grown out the tree. 
+
+
 
 
 ## Attempts at speeding up runtime 
 
+Creating and plotting the leaves will take a moment to run, especially if we are creating many leaves which each have many layers. I tried to improve this runtime . This exploration can be found in the document (here)[/../]
+
+## Tests 
+
+## Examples 
+
+Examples of running this code can be found in the package README. All functions have associated help pages created from roxygen. Users can also utilize the shiny app to explore the code as well. 
