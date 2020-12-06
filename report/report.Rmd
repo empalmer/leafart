@@ -1,6 +1,6 @@
 ---
 title: "Project Report - Emily Palmer"
-output: pdf_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}

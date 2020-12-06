@@ -7,8 +7,8 @@ This package uses the process of creating randomly generated trees to produce pr
 
 ### Helpful links 
 
-[Report](/report/report.pdf)
-Charlotte: I ended up including both a pdf report as well as a vignette. The only way I was able to have a viewable version on GitHub was to use `devtools::build_vignettes`, which creates a doc file with the knitted files. However, each time I ran this or knitted the vignette, all of the knitted files were moved to the .gitignore and I had to manually remove them every time if I wanted the document to appear. I didn't want to have to edit the .gitignore every time I checked if my report would knit, so I left the report folder to serve as my report for this project.
+Report [markdown](/report/report.md) and [pdf](/report/report.pdf)
+Charlotte: I ended up including both a pdf report as well as a vignette. The only way I was able to have a viewable version on GitHub was to use `devtools::build_vignettes`, which creates a doc file with the knitted files. However, each time I ran this or knitted the vignette, all of the knitted files were moved to the .gitignore and I had to manually remove them every time if I wanted the document to appear. I didn't want to have to edit the .gitignore every time I checked if my report would knit, so I left the report folder to serve as my report for this project. Also the links in the preview of the pdf report did not seem to work, so I also included a .md version.
 
 
 [Presentation slides](/presentation/presentation_slides.pdf)
