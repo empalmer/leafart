@@ -12,7 +12,7 @@ I will dig in to three of the core functions `grow_sampling()`,
 `shape_tree()` and `flame_tree_plot()`, and see if editing them will do
 much good.
 
-![](../results/bad_tree.png)
+![](../images/bad_tree.png)
 
 (Is there a `here()` call for paths in markdown?)
 
@@ -57,4 +57,4 @@ ggsave(filename)
 
 ### My first forest:
 
-![](../results/tree2020-11-05%2020:35:00.png)
+![](../images/tree2020-11-05%2020:35:00.png)

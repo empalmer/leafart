@@ -36,4 +36,4 @@ filename <- here::here("results",
 ggsave(filename)
 ```
 
-![](../results/gingko_plot2020-11-13%2012:35:25.png)
+![](../images/gingko_plot2020-11-13%2012:35:25.png)

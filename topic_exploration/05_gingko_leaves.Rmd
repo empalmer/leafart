@@ -52,7 +52,7 @@ ggsave(filename)
 ```
 
 
-![](../results/gingko_plot2020-11-13 12:35:25.png)
+![](../images/gingko_plot2020-11-13 12:35:25.png)
 
 
 ## Week 8 work 
