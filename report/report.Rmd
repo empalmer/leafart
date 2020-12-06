@@ -22,15 +22,21 @@ I initially had wanted to use this project to make tree landscape pictures. Afte
 
 ### Package and results 
 
+
 For this project I created the `leafart` package, which generates leaf/tree pictures. 
 
 This package contains two main functions `create_leaf_pile(param)` which creates a data frame containing multiple randomly generated leaves based on parameter restraints, and `plot_leaves()` which then plots the leaves. The two `get*_params()` functions easily create parameter lists with good defaults. 
+
 
 ```{r, out.width = "50%" }
 get_ginkgo_params() %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 ```
+
+:
+
+
 
 The process to create these leaves and the helper functions that are combined to make the `create_leaf_pile()` are described below. 
 
