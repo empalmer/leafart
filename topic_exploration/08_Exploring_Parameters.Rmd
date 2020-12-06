@@ -14,7 +14,7 @@ devtools::load_all()
 ## Parameters that work for ginkgo leaves
 
 ```{r}
-get_ginkgo_params(nleaves = 150) %>% 
+get_ginkgo_params(n_leaves = 150) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 
@@ -30,7 +30,7 @@ get_ginkgo_params(nleaves = 150) %>%
 The number of "layers" the leaf has 
 
 ```{r}
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 1,
     scale = c(.8,.9),
     angle = c(-10,10,20),
@@ -41,7 +41,7 @@ list(nleaves = 1,
 #filename <- here::here("images","n_layer_1.png")
 #ggsave(filename)
 
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 12,
     scale = c(.8,.9),
     angle = c(-10,10,20),
@@ -63,7 +63,7 @@ Values close to 1 seem to create the most realistic looking trees
 Varried
 
 ```{r}
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 6,
     scale = c(.4,.5),
     angle = c(-10,10,20),
@@ -74,7 +74,7 @@ list(nleaves = 1,
 #filename <- here::here("images","scale_low.png")
 #ggsave(filename)
 
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 6,
     scale = c(3,4),
     angle = c(-10,10,20),
@@ -89,7 +89,7 @@ list(nleaves = 1,
 ## Splits - Doesnt change much 
 
 ```{r}
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
@@ -103,7 +103,7 @@ list(nleaves = 1,
 
 ## Angle 
 ```{r}
-list(nleaves = 1,
+list(n_leaves = 1,
     n_layer = 6,
     scale = c(.8,.9),
     angle = c(-90,0),
@@ -115,7 +115,7 @@ list(nleaves = 1,
 #ggsave(filename)
 
 
-list(nleaves = 1,
+list(n_leaves = 1,
     seed = 286,
     n_layer = 6,
     scale = c(.8,.9),
@@ -126,7 +126,7 @@ list(nleaves = 1,
 #filename <- here::here("images","unbalanced_angle.png")
 #ggsave(filename)
 
-list(nleaves = 1,
+list(n_leaves = 1,
     seed = 286,
     n_layer = 6,
     scale = c(.8,.9),

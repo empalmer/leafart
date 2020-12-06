@@ -93,7 +93,7 @@ grow_leaf <- function(param, init_location = "random") {
     init_angle <- 90
   }
   # make tree vertical if there is only one
-  if(param$nleaves ==1){
+  if(param$n_leaves ==1){
     init_angle <- 90
   }
 

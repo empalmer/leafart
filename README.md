@@ -1,7 +1,7 @@
 # Fall leaf art based on genearted trees
 ## A package by Emily Palmer
 
-This package uses the process of creating generated trees in order to produce pretty leaf pictures. Note the tidyverse must be installed to use this package. 
+This package uses the process of creating randomly generated trees to produce pretty leaf pictures. 
 
 ![Ginkgo plot](/images/default_ginkgo_plot.png)
 
@@ -14,12 +14,12 @@ This package uses the process of creating generated trees in order to produce pr
 [Shiny app](https://emilypalmer.shinyapps.io/empalmer-project-leafart/)
 
 
-### Example code 
+### How to use this package and examples 
 
-The following code will create an image similar to above 
+This package consists of three main functions. The first gets the parameter values for the plot. `get_ginkgo_params()` has default parameters to produce plots like the above, and the user specifies the number of leafs wanted. `get_params()` has more general settings, defaulting to one tree so the user can explore how different parameters influence the 
 
 ```
-get_ginkgo_params() %>% 
+get_ginkgo_params(n) %>% 
   create_leaf_pile() %>% 
   plot_leaves()
 ```

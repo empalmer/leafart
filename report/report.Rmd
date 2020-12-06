@@ -34,7 +34,7 @@ get_ginkgo_params() %>%
   plot_leaves()
 ```
 
-:
+
 
 
 
@@ -125,9 +125,11 @@ Creating and plotting the leaves will take a moment to run, especially if we are
 
 ### Tests 
 
+There are a couple tests for the key functions. They are included in the test folder, and mostly test the dimensions of output of the functions, which ensures the leaf is growing in the expected manor given parameter constraints. 
+
 ### Examples 
 
-Examples of running this code can be found in the package README. All functions have associated help pages created from roxygen. Users can also utilize the shiny app to explore the code as well. 
+Examples of using this code and resulting images from different parameter specifications can be found in the package README. All functions have associated help pages created from roxygen. Users can also utilize the shiny app to explore the code as well. 
 
 ### Acknowledgements and sources 
 

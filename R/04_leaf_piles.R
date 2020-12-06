@@ -9,8 +9,8 @@
 #' get_ginkgo_params() %>% create_leaf_pile()
 #'
 create_leaf_pile <- function(param){
-  nleaves <- param$nleaves
-  purrr::map_dfr(.x = 1:nleaves,
+  n_leaves <- param$n_leaves
+  purrr::map_dfr(.x = 1:n_leaves,
           .f = ~grow_leaf(param = param) %>%
             rake_leaves() %>%
             dplyr::mutate(leaf_id = .x))
@@ -32,14 +32,14 @@ create_leaf_pile <- function(param){
 #' @export
 #'
 spread_leaves <- function(param, ndistinct = 3){
-  nleaves <- param$nleaves
+  n_leaves <- param$n_leaves
   leaf_pile <- purrr::map(.x = 1:ndistinct,
                          .f = ~grow_leaf(param = param,
                                          init_location  = "origin") %>%
                            rake_leaves() %>%
                            mutate(leaf_id = .x)) %>%
-    sample(nleaves, replace = T) %>%
-    purrr::map2(1:nleaves, ~ (mutate(.x,leaf_id  = .y))) %>%
+    sample(n_leaves, replace = T) %>%
+    purrr::map2(1:n_leaves, ~ (mutate(.x,leaf_id  = .y))) %>%
     purrr::map(rotate_leaf) %>%
     purrr::map_df(place_leaf)
 

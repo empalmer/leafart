@@ -7,16 +7,16 @@
 #' - angle : A vector of possible angles for new branches to go
 #' - split : The number of new branches at each branching point
 #'
-#' @param nleaves The number of leafs to create, defaults to 10
+#' @param n_leaves The number of leafs to create, defaults to 10
 #'
 #' @return A list of parameter values that make the leaves look like ginkgo
 #' leaves.
 #'
 #' @export
 #'
-get_ginkgo_params <- function(nleaves = 25){
+get_ginkgo_params <- function(n_leaves = 25){
   params <- list(
-    nleaves = nleaves,
+    n_leaves = n_leaves,
     n_layer = 6,
     scale = c(.8,.9),
     angle = c(-10,10,20),
@@ -28,7 +28,7 @@ get_ginkgo_params <- function(nleaves = 25){
 
 #' Create a parameter list
 #'
-#' @param nleaves The number of leaves to generate
+#' @param n_leaves The number of leaves to generate
 #' @param n_layer How many layers to grow
 #' @param scale A single value or vector of scaling length options
 #' @param angle A single value or vector of angles to split from
@@ -37,13 +37,13 @@ get_ginkgo_params <- function(nleaves = 25){
 #' @return
 #' @export
 #'
-get_params <- function(nleaves = 1,
+get_params <- function(n_leaves = 1,
                        n_layer = 3,
                        scale = c(.8,.9),
                        angle = c(-30,10,20),
                        split = 3){
   params <- list(
-    nleaves = nleaves,
+    n_leaves = n_leaves,
     n_layer = n_layer,
     scale = scale,
     angle = angle,

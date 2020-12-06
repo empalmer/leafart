@@ -14,6 +14,7 @@ library(magrittr)
 library(tibble)
 library(tidyr)
 library(purrr)
+#devtools::install()
 #library(leafart)
 devtools::load_all()
 
@@ -27,7 +28,7 @@ ui <- fluidPage(
     sidebarLayout(
         sidebarPanel(
             numericInput(
-                "nleaves",
+                "n_leaves",
                 "Number of leaves",
                 value = 1,
                 min = 1,
@@ -76,7 +77,7 @@ ui <- fluidPage(
 server <- function(input, output) {
 
     output$leafplot <- renderPlot({
-        list(nleaves = input$nleaves,
+        list(n_leaves = input$n_leaves,
              n_layer = input$n_layer,
              scale = as.numeric(input$scale),
              angle = as.numeric(input$angle),

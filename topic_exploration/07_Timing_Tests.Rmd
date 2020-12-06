@@ -26,9 +26,9 @@ bench::mark(
 )
 
 bench::mark(
-  fewer_distinct = {get_ginkgo_params(nleaves = 50) %>% 
+  fewer_distinct = {get_ginkgo_params(n_leaves = 50) %>% 
   spread_leaves(ndistinct = 3) },
-  more_distinct = {get_ginkgo_params(nleaves = 50) %>%
+  more_distinct = {get_ginkgo_params(n_leaves = 50) %>%
   grow_leaf() %>% 
   rake_leaves()},
   check = FALSE
