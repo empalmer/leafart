@@ -63,6 +63,13 @@ ui <- fluidPage(
                 value = 6,
                 min = 1,
                 max = 10
+            ),
+            selectInput(
+                "func"
+                , "Choose a method of branching"
+                , selected = "Endpoint"
+                , choices = c("Endpoint","Midpoint")
+                , multiple = FALSE
             )
         ),
 
@@ -82,7 +89,10 @@ server <- function(input, output) {
              scale = as.numeric(input$scale),
              angle = as.numeric(input$angle),
              split = input$split) %>%
-            create_leaf_pile() %>%
+            create_leaf_pile(
+                func = ifelse(input$func == "Endpoint",
+                              one_branch,
+                              mid_branch)) %>%
             plot_leaves()
 
     })
