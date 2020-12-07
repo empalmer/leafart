@@ -39,7 +39,18 @@ get_params(scale = seq(.3,1,.1)) %>%
   plot_leaves(pal = "blue")
 ```
 
-![example image](/images/blue_tree.png)
+![](/images/blue_tree.png)
+
+We can also change the method of branching, instead growing a new branch from the middle of the branch instead of the endpoint.
+
+```
+get_params(split = 5, angle = c(-30,30), scale = c(.4,.5)) %>%
+  create_leaf_pile(func = mid_branch) %>% 
+  plot_leaves()
+```
+
+
+![](/images/midbranch.png)
 
 The trees are created by making multiple leaves. We build the leaf/tree in layers. Each layer is composed of a set of branches. To grow the leaf/tree, at the end point of each branch in the layer, several new branches are grown from the endpoint, the number is determined by how many 'splits' there are. These grow off the old branch at a randomly selected angle from the parameter inputs, and the length is randomly scaled from the old branch length. 
 This process is further explained in the [report.](/report/report.pdf)

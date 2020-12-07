@@ -43,19 +43,20 @@ one_branch <- function(partial_leaf, param, n_layer) {
 #' @param leaf The leaf in process of being grown
 #' @param param The parameters specifying how to grow the leaf
 #' @param n_layer Keeps track of the growth
+#' @param func The function to either branch at midpoint or endpoint
 #'
 #' @return A tibble containing the growth at that layer, one row per branch
 #' @export
 #'
 
-grow_leaf_layers <- function(leaf, param, n_layer) {
+grow_leaf_layers <- function(leaf, param, n_layer, func = one_branch) {
   # Add randomness into the split parameter
   splits <- ifelse(length(param$split) == 1,
                    param$split,
                    sample(param$split,1))
   leaf_growth <- purrr::map_dfr(
     .x = 1:splits,
-    .f = one_branch,
+    .f = func,
     partial_leaf = leaf,
     param = param
   )
@@ -76,12 +77,13 @@ grow_leaf_layers <- function(leaf, param, n_layer) {
 #' @param param A list of parameter values that give the leaves their
 #' shape
 #' @param init_location A character of either "random" or "origin"
+#' @param func The function to either branch at midpoint or endpoint, defaults endpoint
 #'
 #' @return
 #' @export
 #'
 
-grow_leaf <- function(param, init_location = "random") {
+grow_leaf <- function(param, init_location = "random", func = one_branch) {
   # initialize at a random location or at origin
   if(init_location == "random"){
     x_0 <- sample(1:50,1)
@@ -111,7 +113,8 @@ grow_leaf <- function(param, init_location = "random") {
     .x = 1:param$n_layer,
     .f = grow_leaf_layers,
     .init = initial_leaf,
-    param = param
+    param = param,
+    func = func
   )
   return(full_leaf)
 }

@@ -1,6 +1,7 @@
 #' Create a pile of leaves
 #'
 #' @param param A list of parameters specifying how to grow the leaf and how many leaves to grow
+#' @param func The function to either branch at midpoint or endpoint
 #'
 #' @return A data frame containing an x, y, and leaf_id column
 #' @export
@@ -8,10 +9,10 @@
 #' @examples
 #' get_ginkgo_params() %>% create_leaf_pile()
 #'
-create_leaf_pile <- function(param){
+create_leaf_pile <- function(param, func = one_branch){
   n_leaves <- param$n_leaves
   purrr::map_dfr(.x = 1:n_leaves,
-          .f = ~grow_leaf(param = param) %>%
+          .f = ~grow_leaf(param = param, func = func) %>%
             rake_leaves() %>%
             dplyr::mutate(leaf_id = .x))
 }

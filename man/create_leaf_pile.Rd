@@ -4,10 +4,12 @@
 \alias{create_leaf_pile}
 \title{Create a pile of leaves}
 \usage{
-create_leaf_pile(param)
+create_leaf_pile(param, func = one_branch)
 }
 \arguments{
 \item{param}{A list of parameters specifying how to grow the leaf and how many leaves to grow}
+
+\item{func}{The function to either branch at midpoint or endpoint}
 }
 \value{
 A data frame containing an x, y, and leaf_id column

@@ -4,7 +4,7 @@
 \alias{grow_leaf_layers}
 \title{Grow one layer of the leaf}
 \usage{
-grow_leaf_layers(leaf, param, n_layer)
+grow_leaf_layers(leaf, param, n_layer, func = one_branch)
 }
 \arguments{
 \item{leaf}{The leaf in process of being grown}
@@ -12,6 +12,8 @@ grow_leaf_layers(leaf, param, n_layer)
 \item{param}{The parameters specifying how to grow the leaf}
 
 \item{n_layer}{Keeps track of the growth}
+
+\item{func}{The function to either branch at midpoint or endpoint}
 }
 \value{
 A tibble containing the growth at that layer, one row per branch

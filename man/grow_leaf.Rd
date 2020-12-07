@@ -4,13 +4,15 @@
 \alias{grow_leaf}
 \title{Grow ONE leaf}
 \usage{
-grow_leaf(param, init_location = "random")
+grow_leaf(param, init_location = "random", func = one_branch)
 }
 \arguments{
 \item{param}{A list of parameter values that give the leaves their
 shape}
 
 \item{init_location}{A character of either "random" or "origin"}
+
+\item{func}{The function to either branch at midpoint or endpoint, defaults endpoint}
 }
 \value{
 
