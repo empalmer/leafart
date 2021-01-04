@@ -1,5 +1,6 @@
 # Using generated trees to create leaf art
 ## A package by Emily Palmer
+### Created for Probability, Computation, and Simulation ST541 final project
 
 This package uses the process of creating randomly generated trees to produce pretty leaf pictures as shown below. Leaves/trees are grown by growing branches in layers, determined by initial parameter inputs.  Zooming out on a plot with many trees looks like a pile of leaves.
 
